@@ -73,11 +73,11 @@ h6 {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #1458b1;
+    color: blue;
 }
 
 .container-fluid .navbar-brand span {
-    color: #1365cf;
+    color: blue;
     font-style: italic;
     font-size: 32px;
     font-weight:800;
@@ -85,82 +85,6 @@ h6 {
 
 
 /* Navbar-end */
-
-/* Home */
-#home {
-    background: linear-gradient(to right, #093058, #2d537c);
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#home .container {
-    margin: 100px;
-}
-
-#home p{
-    color: white;
-}
-#home h5{
-    color: white;
-}
-
-
-#home .btn-shop-now {
-    font-size: 0.8rem;
-    font-weight: 900;
-    outline: none;
-    border: none;
-    background-color: #1365cf;
-    color: white;
-    padding: 13px 30px ;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.5s ease;
-    border-radius: 20px;
-}
-
-#home .btn-shop-now:hover {
-    background-color: #1458b1
-}
-
-#home .imageHome {
-    margin-right: 100px;
-    position: relative;
-    right: 4vh;
-    height: 65vh;
-    transition: 0.5s ease;
-}
-
-#home .blob {
-    height: 93vh;
-    transition: 0.5s ease;
-    position: absolute; 
-    right: 1vh;
-    z-index: 0;
-}
-/* Home-end */
-
-/* Brand */
-#brand {
-    width: 100%;
-    height: 40vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom:40px;
-}
-
-#brand .brand1, .brand2, .brand3, .brand4{
-    width: 250px;
-    height: 250px;
-}
-
-/* Brand-end */
 
 /* Featured */
 #featured p, h3, h4, h5 {
@@ -184,15 +108,17 @@ h6 {
 #featured .btn-buy:hover {
     background-color: #414141;
 }
+#featured .container{
+    margin-left: 100px;
+}
 
-#featured hr {
+hr {
     background-color: black;
     display: flex;
     height: 5px;
     width: 100px;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
-    margin: auto;
 }
 
     /* product */
@@ -209,44 +135,13 @@ h6 {
         opacity: 0.7;
     }
     /* product-end */
+
+    /* pagination */
+    .pagination{
+        margin-left: 100px;
+    }
+    /* pagination-end */
 /* Featured-end */
-
-/* Banner */
-    #banner {
-        background-image: url('https://img.freepik.com/premium-photo/vaping-device-ecigarette-banner-blue-pink-light-background_638202-27.jpg?w=996');
-        width: 100%;
-        height: 60vh;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
-
-    #banner h4 {
-        color: white;
-    }
-
-    #banner .btn-buy {
-        font-size: 0.8rem;
-        font-weight: 900;
-        outline: none;
-        border: none;
-        background-color: black;
-        color: white;
-        padding: 13px 30px ;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: 0.5s ease;
-        border-radius: 20px;
-    }
-    
-    #banner .btn-buy:hover {
-        background-color: #414141;
-    }
-/* Banner-end */
 
 /* Footer */
 footer {

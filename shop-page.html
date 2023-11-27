@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
+
     <!-- required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop-page.css">
 
 </head>
 <body>
@@ -22,7 +22,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><span>V</span>APE STORE</a>
+          <a class="navbar-brand" href="index.html"><span>V</span>APE STORE</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,7 +31,7 @@
 
              <!-- Link -->
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="index.html">Home</a>
               </li>
 
               <li class="nav-item">
@@ -58,122 +58,119 @@
       </nav>
     <!-- navbar-end -->
 
-    <!-- Home -->
-    <section id="home">
-        <div class="container">
-            <h5>NEW ARRIVALS</h5>
-            <h1><span>Harga Terbaik</span> Di Tahun Ini!!!</h1>
-            <p>Liquid rasa anggur mixed with leci.<br>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, cumque!</p>
-            <button class="btn-shop-now" onclick="window.location.href='/shop-page.html'">Shop Now</button>
-        </div> 
-        <img class="imageHome" src="assets/images/liquid-anggur.png" alt="">
-        <img class="blob" src="assets/images/blob.svg" alt="">
-    </section>
-    <!-- Home-end -->
-
-    <!-- Featured -->
-    <section id="featured" class="my-5 pb-5">
-      <div class="Container text-center mt-5 py-5">
-        <h3>Our Featured</h3>
+     <!-- Featured -->
+     <section id="featured" class="my-5 py-5">
+      <div class="container mt-5 py-5">
+        <h3>Our Product</h3>
         <hr>
         <br>
         <p>Here you can check out our featured products</p>
       </div>
       <div class="row mx-auto container-fluid">
 
+        <!-- Product -->
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/p-hexohm.jpeg" width="500px" height="200px">
+          <a href="single-product.html">
+            <img  class="img-fluid mb-3" src="assets/products/p-hexohm.jpeg" width="500px" height="200px">
+          </a>
           <h5 class="p-name">HEXOHM V3 Box Mod</h5>
           <h4 class="p-price">IDR 699.000</h4>
           <button class="btn-buy">Buy</button>
         </div>
 
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
+          <img class="img-fluid mb-3" src="assets/products/banana-liq.jpg">
           <h5 class="p-name">Banana licious 60 ml</h5>
           <h4 class="p-price">IDR 159.000</h4>
           <button class="btn-buy">Buy</button>
         </div>
 
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/jam-mons-blue.jpg">
+          <img class="img-fluid mb-3" src="assets/products/jam-mons-blue.jpg">
           <h5 class="p-name">Jam monster blueberry 60 ml</h5>
           <h4 class="p-price">IDR 169.000</h4>
           <button class="btn-buy">Buy</button>
         </div>
 
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/oat.jpg">
+          <img class="img-fluid mb-3" src="assets/products/oat.jpg">
           <h5 class="p-name">Oat drips original oat 30 ml</h5>
           <h4 class="p-price">IDR 89.000</h4>
           <button class="btn-buy">Buy</button>
         </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/p-hexohm.jpeg" width="500px" height="200px">
+          <h5 class="p-name">HEXOHM V3 Box Mod</h5>
+          <h4 class="p-price">IDR 699.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/banana-liq.jpg">
+          <h5 class="p-name">Banana licious 60 ml</h5>
+          <h4 class="p-price">IDR 159.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/jam-mons-blue.jpg">
+          <h5 class="p-name">Jam monster blueberry 60 ml</h5>
+          <h4 class="p-price">IDR 169.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/oat.jpg">
+          <h5 class="p-name">Oat drips original oat 30 ml</h5>
+          <h4 class="p-price">IDR 89.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/p-hexohm.jpeg" width="500px" height="200px">
+          <h5 class="p-name">HEXOHM V3 Box Mod</h5>
+          <h4 class="p-price">IDR 699.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/banana-liq.jpg">
+          <h5 class="p-name">Banana licious 60 ml</h5>
+          <h4 class="p-price">IDR 159.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/jam-mons-blue.jpg">
+          <h5 class="p-name">Jam monster blueberry 60 ml</h5>
+          <h4 class="p-price">IDR 169.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+          <img class="img-fluid mb-3" src="assets/products/oat.jpg">
+          <h5 class="p-name">Oat drips original oat 30 ml</h5>
+          <h4 class="p-price">IDR 89.000</h4>
+          <button class="btn-buy">Buy</button>
+        </div>
+        <!-- Product-end -->
+
+        <!-- pagination -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination mt-5">
+            <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+            <li class="page-item"><a href="#" class="page-link">1</a></li>
+            <li class="page-item"><a href="#" class="page-link">2</a></li>
+            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+            
+          </ul>
+        </nav>
+        <!-- pagination-end -->
 
       </div>
     </section>
     <!-- Featured-end -->
-
-    <!-- Banner -->
-    <section id="banner" class="my-5 pb-5">
-      <div class="container">
-        <h4>MID SEASON'S SALE</h4>
-        <h1>Summer Collection <br> UP to 30% OFF</h1>
-        <button class="btn-buy text-uppercase">shop now</button>
-      </div>
-    </section>
-    <!-- Banner-End -->
-
-    <!-- Featured Liquid -->
-    <section id="featured" class="my-5 pb-5">
-      <div class="Container text-center mt-5 py-5">
-        <h3>Liquid</h3>
-        <hr>
-        <br>
-        <p>Here you can check out our liquid products</p>
-      </div>
-      <div class="row mx-auto container-fluid">
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-          <h5 class="p-name">Banana licious 60 ml</h5>
-          <h4 class="p-price">IDR 159.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/jam-mons-blue.jpg">
-          <h5 class="p-name">Jam monster blueberry 60 ml</h5>
-          <h4 class="p-price">IDR 169.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/oat.jpg">
-          <h5 class="p-name">Oat drips original oat 30 ml</h5>
-          <h4 class="p-price">IDR 89.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-          <h5 class="p-name">Banana licious 60 ml</h5>
-          <h4 class="p-price">IDR 159.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-      </div>
-    </section>
-    <!-- Featured liquid-end -->
-
-    <!-- Brand -->
-    <hr class="brand">
-    <section id="brand">
-      <img class="brand1" src="/assets/brands/hexohm.png" alt="">
-      <img class="brand2" src="/assets/brands/jam-monster.png" alt="">
-      <img class="brand3" src="/assets/brands/voopoo.png" alt="">
-      <img class="brand4" src="assets/brands/oat-drips.png" alt="">
-    </section>
-    <!-- Brand-end -->
 
     <!-- Footer -->
     <footer>
@@ -196,5 +193,6 @@
 
     <!-- Js dari bootsrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
 </body>
 </html>

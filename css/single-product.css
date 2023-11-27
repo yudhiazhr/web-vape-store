@@ -12,31 +12,31 @@ body {
 }
 
 h1 {
-    color: white;
+    color: black;
     font-size: 2.5rem;
     font-weight: 700;
 }
 
 h2 {
-    color: white;
+    color: black;
     font-size: 1.8rem;
     font-weight: 600;
 }
 
 h3 {
-    color: white;
+    color: black;
     font-size: 1.5rem;
     font-weight: 800;
 }
 
 h4 {
-    color: white;
+    color: black;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
 h5 {
-    color: white;
+    color: black;
     font-size: 1rem;
     font-weight: 400;
 }
@@ -73,11 +73,11 @@ h6 {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #1458b1;
+    color: blue;
 }
 
 .container-fluid .navbar-brand span {
-    color: #1365cf;
+    color: blue;
     font-style: italic;
     font-size: 32px;
     font-weight:800;
@@ -86,30 +86,19 @@ h6 {
 
 /* Navbar-end */
 
-/* Home */
-#home {
-    background: linear-gradient(to right, #093058, #2d537c);
-    width: 100%;
-    height: 100vh;
+/* single product*/
+
+.small-img-group{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
-#home .container {
-    margin: 100px;
+.small-img-col {
+    flex-basis: 24%;
+    cursor: pointer;
 }
 
-#home p{
-    color: white;
-}
-#home h5{
-    color: white;
-}
-
-
-#home .btn-shop-now {
+.buy-btn {
     font-size: 0.8rem;
     font-weight: 900;
     outline: none;
@@ -123,48 +112,36 @@ h6 {
     border-radius: 20px;
 }
 
-#home .btn-shop-now:hover {
-    background-color: #1458b1
+.buy-btn:hover {
+    background-color:#1458b1
+
 }
 
-#home .imageHome {
-    margin-right: 100px;
-    position: relative;
-    right: 4vh;
-    height: 65vh;
-    transition: 0.5s ease;
+.single-product input{
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border-color: grey;
 }
 
-#home .blob {
-    height: 93vh;
-    transition: 0.5s ease;
-    position: absolute; 
-    right: 1vh;
-    z-index: 0;
-}
-/* Home-end */
+/* single product-end */
 
-/* Brand */
-#brand {
-    width: 100%;
-    height: 40vh;
+/* featured */
+hr {
+    background-color: black;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom:40px;
+    height: 5px;
+    width: 100px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: auto;
 }
 
-#brand .brand1, .brand2, .brand3, .brand4{
-    width: 250px;
-    height: 250px;
-}
-
-/* Brand-end */
-
-/* Featured */
-#featured p, h3, h4, h5 {
-    color: #000;
+#featured .btn-buy:hover {
+    background-color: #414141;
 }
 
 #featured .btn-buy {
@@ -181,11 +158,7 @@ h6 {
     border-radius: 20px;
 }
 
-#featured .btn-buy:hover {
-    background-color: #414141;
-}
-
-#featured hr {
+hr {
     background-color: black;
     display: flex;
     height: 5px;
@@ -209,44 +182,7 @@ h6 {
         opacity: 0.7;
     }
     /* product-end */
-/* Featured-end */
-
-/* Banner */
-    #banner {
-        background-image: url('https://img.freepik.com/premium-photo/vaping-device-ecigarette-banner-blue-pink-light-background_638202-27.jpg?w=996');
-        width: 100%;
-        height: 60vh;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-    }
-
-    #banner h4 {
-        color: white;
-    }
-
-    #banner .btn-buy {
-        font-size: 0.8rem;
-        font-weight: 900;
-        outline: none;
-        border: none;
-        background-color: black;
-        color: white;
-        padding: 13px 30px ;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: 0.5s ease;
-        border-radius: 20px;
-    }
-    
-    #banner .btn-buy:hover {
-        background-color: #414141;
-    }
-/* Banner-end */
+/* featured-end */
 
 /* Footer */
 footer {
@@ -281,9 +217,6 @@ footer {
     margin-left: 10px;
     margin-right: 10px;
   }
-  
-  
- 
 /* Footer-end */
 
 /* Responsive */
