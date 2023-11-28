@@ -24,7 +24,7 @@ h2 {
 }
 
 h3 {
-    color: white;
+    color: black;
     font-size: 1.5rem;
     font-weight: 800;
 }
@@ -82,12 +82,11 @@ h6 {
     font-size: 32px;
     font-weight:800;
 }
-
-
 /* Navbar-end */
 
-/* Cart */
-.cart hr {
+/* My account */
+
+hr {
     background-color: black;
     display: flex;
     height: 5px;
@@ -96,99 +95,88 @@ h6 {
     border-radius: 10px;
 }
 
-.cart table{
+#my-account-form{
+    width: 50%;
+    margin: 35px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+#my-account-form input {
+    margin: 5px auto;
+}
+
+#my-account-form #change-pass-btn {
+    color: white;
+    background-color: #1365cf;
+}
+
+#my-account-form #change-pass-btn:hover {
+    color: white;
+    background-color: #1458b1;
+}
+
+#my-orders-btn {
+    color: white;
+    background-color: #000;
+    width: 150px;
+}
+
+#my-orders-btn:hover {
+    background-color: #383838;
+}
+
+#logout-btn {
+    width: 150px;
+    color: white;
+    background-color: rgb(105, 105, 105);
+}
+
+#logout-btn:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(75, 75, 75);
+}
+
+/* My account-end */
+
+/* My orders */
+.my-orders table{
     width: 100%;
     border-collapse: collapse;
 }
 
-.cart .product-info {
+.my-orders .product-info{
     display: flex;
     flex-wrap: wrap;
 }
 
-.cart th{
+.my-orders th{
     text-align: left;
     padding: 5px 10px;
-    color: #ffff;
+    color: #fff;
     background-color: #000;
 }
 
-.cart td {
+.my-orders th:nth-child(2){
+    text-align: right;
+}
+
+.my-orders td{
     padding: 10px 20px;
 }
 
-.cart td img {
+.my-orders td:nth-child(2){
+    text-align: right;
+}
+
+.my-orders td img{
     width: 100px;
     height: 100px;
-    margin-right: 20px;
-}
-
-.cart td input{
-    width: 40px;
-    height: 30px;
-    padding: 5px;
-    border-radius: 10px;
-    border-color: grey;
-}
-
-.cart td a{
-    color: #1365cf;
-}
-
-.cart .remove-btn{
-    color: #1365cf;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.cart .edit-btn{
-    color: #1365cf;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.cart .product-info p{
-    margin: 3px;
-}
-
-.cart .cart-total {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.cart .cart-total table{
-    width: 100%;
-    max-width: 500px;
-    border-top: 3px solid;
-}
-
-td:last-child{
-    text-align: right;
-}
-
-th:last-child{
-    text-align: right;
-}
-
-.checkout-container{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.checkout-btn{
-    background-color: #1365cf;
-    color: #fff;
-    margin-top: 20px;
     margin-right: 10px;
 }
 
-.checkout-btn:hover{
-    background-color: #1451a1;
-    color: #fff;
-
-}
-
-/* Cart-end */
+/* My orders-end */
 
 /* Footer */
 footer {
