@@ -130,6 +130,12 @@ h6 {
 /* single product-end */
 
 /* featured */
+
+.img-fluid {
+    width: 350px;
+    height: 350px;
+}
+
 hr {
     background-color: black;
     display: flex;

@@ -1,3 +1,29 @@
+<?php 
+
+include("server/connection.php");
+
+if(isset($_GET['product_id'])) {
+
+  $product_id = $_GET['product_id'];
+
+  $stmt = $conn->prepare("SELECT * FROM products WHERE product_id = ?");
+  $stmt->bind_param("i", $product_id);
+
+  $stmt->execute();
+
+  $product = $stmt->get_result();
+
+}else{
+  /* no product id  */
+  header('location: index.php');
+
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +48,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><span>V</span>APE STORE</a>
+          <a class="navbar-brand" href="index.php"><span>V</span>APE STORE</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,7 +57,7 @@
 
              <!-- Link -->
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
 
               <li class="nav-item">
@@ -61,36 +87,41 @@
     <!-- single product -->
       <section class="container single-product my-5 pt-5">
         <div class="row mt-5">
+
+          <?php  while($row = $product->fetch_assoc()) { ?>
+
             <div class="col-lg-4 col-md-6 col-sm-12">
-                <img class="img-fluid w-100 pb-1" src="assets/products/p-hexohm.jpeg" id="mainImg" />
+                <img class="img-fluid w-100 pb-1" src="assets/products/<?php echo $row['product_image']; ?>" id="mainImg" />
                 <div class="small-img-group">
                     
                     <div class="small-img-col">
-                        <img src="assets/products/p-hexohm.jpeg" width="100%" class="small-img"/>
+                        <img src="assets/products/<?php echo $row['product_image']; ?>" width="100%" class="small-img"/>
                     </div>
                     <div class="small-img-col">
-                        <img src="assets/products/Hexohm-mod-green.jpg" width="100%" class="small-img"/>
+                        <img src="assets/products/<?php echo $row['product_image2']; ?>" width="100%" class="small-img"/>
                     </div>
                     <div class="small-img-col">
-                        <img src="assets/products/hexohm-mod-purple.jpg" width="100%" class="small-img"/>
+                        <img src="assets/products/<?php echo $row['product_image3']; ?>" width="100%" class="small-img"/>
                     </div>
                     <div class="small-img-col">
-                        <img src="assets/products/hexohm-mod-blue.jpg" width="100%" class="small-img"/>
+                        <img src="assets/products/<?php echo $row['product_image4']; ?>" width="100%" class="small-img"/>
                     </div>
                 </div>
             </div>
 
+            
+
             <div class="col-lg-6 col-md-12 col-12">
-                <h6>MOD</h6>
-                <h3 class="py-4">HEXOHM V3 Box Mod</h3>
-                <h2>IDR 699.000</h2>
+                <h6><?php echo $row['product_category']; ?></h6>
+                <h3 class="py-4"><?php echo $row['product_name']; ?></h3>
+                <h2>IDR <?php echo $row['product_price']; ?></h2>
                 <input type="number" value="1">
                 <button class="buy-btn">Add to cart</button>
                 <h4 class="mt-5 mb-5"></h4>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Maxime minima temporibus facilis porro voluptatibus illum 
-                    cumque nobis commodi vero molestias.</span>
+                <span><?php echo $row['product_description']; ?></span>
             </div>
+
+            <?php } ?>
         </div>
       </section>
 
@@ -99,47 +130,32 @@
 
     <!-- single product-end -->
 
-     <!-- Featured -->
-     <section id="featured" class="my-5 pb-5">
-        <div class="Container text-center mt-5 py-5">
-          <h3>Featured</h3>
-          <hr>
-          <br>
-          <p>Here you can check out our featured products</p>
-        </div>
-        <div class="row mx-auto container-fluid">
-  
-          <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="/assets/products/p-hexohm.jpeg" width="500px" height="200px">
-            <h5 class="p-name">HEXOHM V3 Box Mod</h5>
-            <h4 class="p-price">IDR 699.000</h4>
-            <button class="btn-buy">Buy</button>
-          </div>
-  
-          <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-            <h5 class="p-name">Banana licious 60 ml</h5>
-            <h4 class="p-price">IDR 159.000</h4>
-            <button class="btn-buy">Buy</button>
-          </div>
-  
-          <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="/assets/products/jam-mons-blue.jpg">
-            <h5 class="p-name">Jam monster blueberry 60 ml</h5>
-            <h4 class="p-price">IDR 169.000</h4>
-            <button class="btn-buy">Buy</button>
-          </div>
-  
-          <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-            <img class="img-fluid mb-3" src="/assets/products/oat.jpg">
-            <h5 class="p-name">Oat drips original oat 30 ml</h5>
-            <h4 class="p-price">IDR 89.000</h4>
-            <button class="btn-buy">Buy</button>
-          </div>
-  
-        </div>
-      </section>
-      <!-- Featured-end -->
+    <!-- Featured -->
+    <section id="featured" class="my-5 pb-5">
+      <div class="Container text-center mt-5 py-5">
+        <h3>Our Featured</h3>
+        <hr>
+        <br>
+        <p>Here you can check out our featured products</p>
+      </div>
+      <div class="row mx-auto container-fluid">
+
+      <?php include("server/get_featured_products.php"); ?>
+
+      <?php while($row= $featured_products->fetch_assoc()) { ?>
+       
+        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
+        <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        <h5 class="p-name"><?php echo $row['product_name'];?></h5>
+        <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+        <a href="<?php echo "single-product.php?product_id=", $row['product_id'];?>"><button class="btn-buy">Buy</button></a>
+      </div>
+      
+      <?php } ?>
+
+      </div>
+    </section>
+    <!-- Featured-end -->
 
     <!-- Footer -->
     <footer>

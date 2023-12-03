@@ -81,33 +81,18 @@
       </div>
       <div class="row mx-auto container-fluid">
 
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/p-hexohm.jpeg" width="500px" height="200px">
-          <h5 class="p-name">HEXOHM V3 Box Mod</h5>
-          <h4 class="p-price">IDR 699.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
+      <?php include("server/get_featured_products.php"); ?>
 
+      <?php while($row= $featured_products->fetch_assoc()) { ?>
+       
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-          <h5 class="p-name">Banana licious 60 ml</h5>
-          <h4 class="p-price">IDR 159.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/jam-mons-blue.jpg">
-          <h5 class="p-name">Jam monster blueberry 60 ml</h5>
-          <h4 class="p-price">IDR 169.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/oat.jpg">
-          <h5 class="p-name">Oat drips original oat 30 ml</h5>
-          <h4 class="p-price">IDR 89.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
+        <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        <h5 class="p-name"><?php echo $row['product_name'];?></h5>
+        <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+        <a href="<?php echo "single-product.php?product_id=", $row['product_id'];?>"><button class="btn-buy">Buy</button></a>
+      </div>
+      
+      <?php } ?>
 
       </div>
     </section>
@@ -123,7 +108,7 @@
     </section>
     <!-- Banner-End -->
 
-    <!-- Featured Liquid -->
+    <!-- category Liquid -->
     <section id="featured" class="my-5 pb-5">
       <div class="Container text-center mt-5 py-5">
         <h3>Liquid</h3>
@@ -133,37 +118,22 @@
       </div>
       <div class="row mx-auto container-fluid">
 
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-          <h5 class="p-name">Banana licious 60 ml</h5>
-          <h4 class="p-price">IDR 159.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
+      <?php include("server/get_liquid_products.php"); ?>
+
+      <?php while($row= $liquid_products->fetch_assoc()) { ?>
 
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/jam-mons-blue.jpg">
-          <h5 class="p-name">Jam monster blueberry 60 ml</h5>
-          <h4 class="p-price">IDR 169.000</h4>
-          <button class="btn-buy">Buy</button>
+          <img class="img-fluid mb-2" src="/assets/products/<?php echo $row['product_image'];?>">
+          <h5 class="p-name"><?php echo $row['product_name'];?></h5>
+          <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+          <a href="single-product.php"><button class="btn-buy">Buy</button></a>
         </div>
 
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/oat.jpg">
-          <h5 class="p-name">Oat drips original oat 30 ml</h5>
-          <h4 class="p-price">IDR 89.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-3" src="/assets/products/banana-liq.jpg">
-          <h5 class="p-name">Banana licious 60 ml</h5>
-          <h4 class="p-price">IDR 159.000</h4>
-          <button class="btn-buy">Buy</button>
-        </div>
-
+      <?php } ?>
+      
       </div>
     </section>
-    <!-- Featured liquid-end -->
+    <!-- category liquid-end -->
 
     <!-- Brand -->
     <hr class="brand">

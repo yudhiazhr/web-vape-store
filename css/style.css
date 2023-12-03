@@ -195,6 +195,11 @@ h6 {
     margin: auto;
 }
 
+.img-fluid {
+    width: 350px;
+    height: 350px;
+}
+
     /* product */
     .product {
         cursor: pointer;
