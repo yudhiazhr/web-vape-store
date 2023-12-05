@@ -79,7 +79,7 @@ if (isset($_POST['add_to_cart'])) {
 
 
 } else {
-    header("location: index.php");
+   
 }
 
 function calculatedTotalCart () {

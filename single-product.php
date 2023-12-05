@@ -13,10 +13,8 @@ if(isset($_GET['product_id'])) {
 
   $product = $stmt->get_result();
 
-}else{
-  /* no product id  */
-  header('location: index.php');
-
+} else {
+ 
 }
 
 ?>
