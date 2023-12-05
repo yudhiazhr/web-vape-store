@@ -1,4 +1,20 @@
-!DOCTYPE html>
+<?php 
+
+session_start();
+
+if( !empty($_SESSION['cart']) && isset($_POST['checkout']) ){
+
+    //user in
+
+
+    //send user to home page or index
+} else {
+    header('location: index.php');
+}
+
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -22,7 +38,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><span>V</span>APE STORE</a>
+          <a class="navbar-brand" href="index.php"><span>V</span>APE STORE</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,7 +47,7 @@
 
              <!-- Link -->
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
 
               <li class="nav-item">
@@ -39,7 +55,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="cart-page.html">Cart</a>
+                <a class="nav-link" href="cart-page.php">Cart</a>
               </li>
 
               <li class="nav-item">
@@ -65,7 +81,8 @@
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container">
-            <form action="" id="checkout-form">
+            <form id="checkout-form" method="POST" action="place_order.php">
+                
 
                 <div class="form-group checkout-small-element">
                     <label >Name</label>
@@ -94,7 +111,8 @@
                 </div>
 
                 <div class="form-group checkout-btn-container">
-                    <input type="submit" class="btn" id="checkout-btn" value="Checkout">
+                    <p>Total amount: $ <?php echo $_SESSION['total']; ?> </p>
+                    <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
                 </div>
 
             </form>

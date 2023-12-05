@@ -24,6 +24,7 @@ if(isset($_GET['product_id'])) {
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +66,7 @@ if(isset($_GET['product_id'])) {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="cart-page.html">Cart</a>
+                <a class="nav-link" href="cart-page.php">Cart</a>
               </li>
 
               <li class="nav-item">
@@ -115,12 +116,22 @@ if(isset($_GET['product_id'])) {
                 <h6><?php echo $row['product_category']; ?></h6>
                 <h3 class="py-4"><?php echo $row['product_name']; ?></h3>
                 <h2>IDR <?php echo $row['product_price']; ?></h2>
-                <input type="number" value="1">
-                <button class="buy-btn">Add to cart</button>
-                <h4 class="mt-5 mb-5"></h4>
+
+                <form  method="POST" action="cart-page.php">
+                <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>" >
+                <input type="hidden" name="product_image" value="<?php echo $row['product_image']; ?>" >
+                <input type="hidden" name="product_name" value="<?php echo $row['product_name']; ?>">
+                <input type="hidden" name="product_price" value="<?php echo $row['product_price']; ?>">
+
+                <input type="number" name="product_quantity" value="1">
+                <button class="buy-btn" type="submit" name="add_to_cart">Add to cart</button>
+                </from>
+
+               
+                <h4 class="mt-5 mb-5">Product details</h4>
                 <span><?php echo $row['product_description']; ?></span>
             </div>
-
+          
             <?php } ?>
         </div>
       </section>
