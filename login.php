@@ -1,4 +1,53 @@
-!DOCTYPE html>
+<?php 
+
+session_start();
+
+include("server/connection.php");
+
+if(isset($_SESSION['logged_in'])) {
+  header('location: my-account-page.php');
+  exit();
+}
+
+if(isset($_POST["login-btn"])){
+
+  $email = $_POST['email'];
+  $password = md5($_POST['password']);
+
+  $stmt = $conn->prepare('SELECT user_id, user_name, user_email, user_password FROM users WHERE user_email=? AND user_password =? LIMIT 1');
+
+  $stmt->bind_param('ss', $email, $password);
+  
+  if($stmt->execute()){
+    $stmt->bind_result($user_id, $user_name, $user_email, $user_password);
+    $stmt->store_result ();
+
+    if($stmt->num_rows() == 1) {
+      $stmt->fetch();
+
+      $_SESSION['user_id'] = $user_id;
+      $_SESSION['user_name'] = $user_name; 
+      $_SESSION['user_email'] = $user_email;
+      $_SESSION['logged_in'] = true;
+
+      header('location: my-account-page.php?message=logged in successfully');
+    
+    } else {
+      header('location: login.php?error=could not verify your account');
+    }
+  
+  } else {
+
+    header('location: login.php?error=something went wrong');
+  
+  }
+}
+
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -14,7 +63,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- css -->
-    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/login.css">
 
 </head>
 <body>
@@ -58,47 +107,40 @@
     </nav>
     <!-- navbar-end -->
 
-    <!-- Sign up -->
-    <section class="sign-up my-5 py-5">
+    <!-- Login -->
+    <section class="login my-5 py-5">
         <div class="container text-center mt-3 pt-5">
-            <h2 class="form-weight-bold">Sign up</h2>
+            <h2 class="form-weight-bold">Login</h2>
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container">
-            <form action="" id="signup-form">
+            <form action="login.php" method="POST" id="login-form">
 
-                <div class="form-group">
-                    <label >Name</label>
-                    <input type="text" class="form-control" id="signup-name" name="name" placeholder="Name" required>
-                </div>
+            <p style="color: red" class="text-center"><?php if(isset($_GET['error'])){ echo $_GET ['error']; }?></p>
+
 
                 <div class="form-group">
                     <label >Email</label>
-                    <input type="text" class="form-control" id="signup-email" name="email" placeholder="Email" required>
+                    <input type="text" class="form-control" id="login-email" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="form-group">
                     <label >Password</label>
-                    <input type="password" class="form-control" id="signup-password" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="form-group">
-                    <label >Confirm Password</label>
-                    <input type="password" class="form-control" id="signup-confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+                    <input type="submit" class="btn" id="login-btn" name="login-btn" value="Login">
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" class="btn" id="signup-btn" value="Sign Up">
-                </div>
-
-                <div class="form-group">
-                   <a id="login-url" class="btn">Do you have account? Login</a>
+                   <a href="sign-up.php" id="register-url" class="btn">Don't have account? Sign Up</a>
                 </div>
 
             </form>
         </div>
     </section>
-    <!-- Sign up -end -->
+    <!-- login-end -->
 
     <!-- Footer -->
     <footer>

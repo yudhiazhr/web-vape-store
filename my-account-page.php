@@ -1,4 +1,28 @@
-!DOCTYPE html>
+<?php 
+
+session_start();
+
+if (!isset($_SESSION["logged_in"])) {
+    header('location: login.php');
+    exit();
+}
+
+if(isset($_GET['logout'])){
+    if(isset($_SESSION['logged_in'])) {
+        unset($_SESSION['logged_in']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_email']);
+        header('location: login.php');
+        exit();
+    }
+}
+
+
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   
@@ -66,10 +90,10 @@
                 <h3 class="font-weight-bold">My account</h3>
                 <hr class="mx-auto">
                 <div class="my-account-info">
-                    <p>Name<span>test</span></p>
-                    <p>Email<span>text@gmail.com</span></p>
+                    <p>Name : <span><?php if(isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; }?></span></p>
+                    <p>Email : <span><?php if(isset($_SESSION['user_email'])) { echo $_SESSION['user_email']; }?></span></p>
                     <p><a href="#my-orders" id="my-orders-btn" class="btn">My orders</a></p>
-                    <p><a href="" id="logout-btn" class="btn">Logout</a></p>
+                    <p><a href="my-account-page.php?logout=1" id="logout-btn" class="btn">Logout</a></p>
                 </div>
             </div>
 
