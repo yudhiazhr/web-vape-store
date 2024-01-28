@@ -43,11 +43,12 @@ if(isset($_POST["signup"])) {
             $stmt->bind_param('sss', $name, $email,md5($password));
 
            if ($stmt->execute()){
-
+            $user_id = $stmt -> insert_id;
+            $_SESSION['user_id'] = $user_id;
             $_SESSION['user_email'] = $email;
             $_SESSION['user_name'] = $name;
             $_SESSION['logged_in'] = true;
-            header('location: my-account-page.php?sign-up=You sign-up successfully');
+            header('location: my-account-page.php?sign-up-success=You sign-up successfully');
 
             // account could not be created
            } else {

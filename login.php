@@ -30,7 +30,7 @@ if(isset($_POST["login-btn"])){
       $_SESSION['user_email'] = $user_email;
       $_SESSION['logged_in'] = true;
 
-      header('location: my-account-page.php?message=logged in successfully');
+      header('location: my-account-page.php?login-success=logged in successfully');
     
     } else {
       header('location: login.php?error=could not verify your account');

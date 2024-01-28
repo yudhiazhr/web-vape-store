@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+include('server/connection.php');
 
 if (!isset($_SESSION["logged_in"])) {
     header('location: login.php');
@@ -17,7 +18,29 @@ if(isset($_GET['logout'])){
     }
 }
 
+if (isset($_POST['change-password'])) {
 
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
+    
+
+     //if password dont match
+     if($password !== $confirmPassword) {
+        header('location: my-account-page.php?error=passwowrd dont match');
+    }else if(strlen($password) < 6){
+        header('location: my-account-page.php?error=password must be at least 6 characters');
+    }else{
+        $stmt = $conn-> prepare("UPDATE users SET user_password=? WHERE user_email=?");
+        $stmt-> bind_param('ss', md5($password), $user_email);
+        
+        if ($stmt-> execute()){
+            header('location: my-account-page.php?message=password has been updated successfully');
+        } else{
+            header('location: my-account-page.php?error=could not update password ');
+        }
+
+    }
+}
 
 ?>
 
@@ -85,8 +108,9 @@ if(isset($_GET['logout'])){
     <!-- my account -->
     <section class="my-5 py-5">
         <div class="row container mx-auto">
-
             <div class="text-center mt-3 pt-5 col-lg-6 col-md-12 col-sm-12">
+            <p class="text-center" style="color:green"><?php if(isset($_GET['sign-up-success'])){echo $_GET['sign-up-success'];}?></p> 
+            <p class="text-center" style="color:green"><?php if(isset($_GET['login-success'])){echo $_GET['login-success'];}?></p> 
                 <h3 class="font-weight-bold">My account</h3>
                 <hr class="mx-auto">
                 <div class="my-account-info">
@@ -98,8 +122,10 @@ if(isset($_GET['logout'])){
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <form id="my-account-form">
-                    <h3>Change Password</h3>
+                <form id="my-account-form" method ="POST" action="my-account-page.php">
+                <p class="text-center" style="color:red"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>    
+                <p class="text-center" style="color:green"><?php if(isset($_GET['message'])){echo $_GET['message'];}?></p> 
+                <h3>Change Password</h3>
                     <hr class="mx-auto">
                     
                     <div class="form-group">
@@ -113,7 +139,7 @@ if(isset($_GET['logout'])){
                     </div>
     
                     <div class="form-group">
-                        <input type="submit" class="btn" id="change-pass-btn" value="Change Password">
+                        <input type="submit" class="btn" name="change-password" id="change-pass-btn" value="Change Password">
                     </div>
 
                 </form>
