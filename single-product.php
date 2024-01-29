@@ -60,7 +60,7 @@ if(isset($_GET['product_id'])) {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="shop-page.html">Shop</a>
+                <a class="nav-link" href="shop-page.php">Shop</a>
               </li>
 
               <li class="nav-item">
@@ -68,7 +68,7 @@ if(isset($_GET['product_id'])) {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="contact-us-page.html">Contact</a>
+                <a class="nav-link" href="contact-us-page.php">Contact</a>
               </li>
             <!-- Link-end -->
             </ul>

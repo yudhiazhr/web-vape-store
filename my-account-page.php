@@ -42,6 +42,20 @@ if (isset($_POST['change-password'])) {
     }
 }
 
+// get orders
+if (isset($_SESSION['logged_in'])){
+    
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=?");
+
+    $stmt->bind_param('i', $user_id);
+
+    $stmt->execute();
+ 
+    $orders = $stmt->get_result();
+ 
+}
+
 ?>
 
 
@@ -69,7 +83,7 @@ if (isset($_POST['change-password'])) {
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><span>V</span>APE STORE</a>
+          <a class="navbar-brand" href="index.php"><span>V</span>APE STORE</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -78,19 +92,19 @@ if (isset($_POST['change-password'])) {
 
              <!-- Link -->
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="shop-page.html">Shop</a>
+                <a class="nav-link" href="shop-page.php">Shop</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="cart-page.html">Cart</a>
+                <a class="nav-link" href="cart-page.php">Cart</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="contact-us-page.html">Contact</a>
+                <a class="nav-link" href="contact-us-page.php">Contact</a>
               </li>
             <!-- Link-end -->
             </ul>
@@ -158,43 +172,39 @@ if (isset($_POST['change-password'])) {
         
         <table class="mt-5 pt-5" >
             <tr>
-                <th>Product</th>
-                <th>date</th>
+                <th>Order id</th>
+                <th>Order cost</th>
+                <th>Order status</th>
+                <th>Order date</th>
+                <th>Order details</th>
+
             </tr>
 
-            <tr>
-                <td>
-                   <div class="product-info">
-                    <img src="assets/products/hexohm-mod-blue.jpg" alt="">
-                        <div>
-                            <p class="mt-3">HEXOHM V3 Box Mod</p>
-                            <small><span>IDR </span>699.000</small>
-                        </div>
-                    </div>
-                </td>
+            <?php while($row = $orders->fetch_assoc() ){ ?>
+                <tr>
+                    <td>
+                        <span><?php echo $row['order_id']; ?></span>
+                    </td>
 
-                <td>
-                    <span>2023-04-05</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                   <div class="product-info">
-                    <img src="assets/products/oat.jpg" alt="">
-                        <div>
-                            <p class="mt-3">Oat drips original oat 30 ml</p>
-                            <small><span>IDR </span>89.000</small>
-                        </div>
-                    </div>
-                </td>
-
-                <td>
-                    <span>2023-04-05</span>
-                </td>
-                
-            </tr>
-
+                    <td>
+                        <span><?php echo $row['order_cost'];?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $row['order_status'];?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $row['order_date'];?></span>
+                    </td>
+                    <td>
+                        <form method="POST" action="order-details.php">
+                            <input type="hidden" value="<?php echo $row['order_status'];?>" name="order_status">
+                            <input type="hidden" value="<?php echo $row['order_id'];?>" name="order_id">
+                            <input type="submit" class="btn order-details-btn" value="details" name="order-details-btn">
+                        </form>
+                    </td>
+                    
+                </tr>
+            <?php } ?>
         </table>
 
     </section>

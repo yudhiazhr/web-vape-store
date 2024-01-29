@@ -152,28 +152,28 @@ hr {
 }
 
 .my-orders th{
-    text-align: left;
-    padding: 5px 10px;
+    padding: 5px 20px;
     color: #fff;
     background-color: #000;
 }
 
 .my-orders th:nth-child(2){
-    text-align: right;
+    text-align: left;
 }
 
 .my-orders td{
     padding: 10px 20px;
 }
 
-.my-orders td:nth-child(2){
-    text-align: right;
+.my-orders td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
 }
 
-.my-orders td img{
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
+.my-orders .order-details-btn {
+    color: #fff;
+    background-color: #1458b1;
 }
 
 /* My orders-end */

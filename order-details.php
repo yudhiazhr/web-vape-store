@@ -1,18 +1,34 @@
 <?php 
 
-session_start();
+  /* 
+    not paid
+    paid
+    shipped
+    delivered
+  */
 
-if( !empty($_SESSION['cart']) && isset($_POST['checkout']) ){
+  include ('server/connection.php');
 
-    //user in
+  if(isset($_POST['order-details-btn']) && isset($_POST['order_id'])) {
 
+    $order_id = $_POST['order_id'];
+    $order_status = $_POST['order_status'];
 
-    //send user to home page or index
-} else {
-    header('location: index.php');
-}
+    $stmt = $conn->prepare("SELECT * FROM order_item WHERE order_id=?");
+    $stmt-> bind_param('i', $order_id);
+    $stmt-> execute();
+    $order_details = $stmt->get_result();
+
+  } else {
+
+    header ('location: my-account-page.php');
+    exit;
+
+  }
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +46,7 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout']) ){
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- css -->
-    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/my-account.css">
 
 </head>
 <body>
@@ -74,52 +90,53 @@ if( !empty($_SESSION['cart']) && isset($_POST['checkout']) ){
     </nav>
     <!-- navbar-end -->
 
-    <!-- checkout -->
-    <section class="checkout my-5 py-5">
-        <div class="container text-center mt-3 pt-5">
-            <h2 class="form-weight-bold">Checkout</h2>
+    <!-- order detail -->
+    <section id="my-orders" class="my-orders container my-5 py-3">
+        <div class="container mt-5">
+            <h2 class="font-weight-bold text-center">Order details</h2>
             <hr class="mx-auto">
         </div>
-        <div class="mx-auto container">
-            <form id="checkout-form" method="POST" action="server/place_order.php">
-                
+        
+        <table class="mt-5 pt-5" >
+            <tr>
+                <th>Product </th>
+                <th>Price</th>
+                <th>Quantity</th>
 
-                <div class="form-group checkout-small-element">
-                    <label >Name</label>
-                    <input type="text" class="form-control" id="checkout-name" name="name" placeholder="Name" required>
-                </div>
+            </tr>
+            <?php while ($row = $order_details->fetch_assoc()) { ?>
+         
+                <tr>
+                    <td>
+                    <div class="product-info">
+                        <img src="assets/products/<?php echo $row['product_image'];?>">
+                            <div>
+                                <p class="mt-3"><?php echo $row['product_name'];?></p>
+                            </div>
+                        </div>
+                      
+                    </td>
 
-                <div class="form-group checkout-small-element">
-                    <label >Email</label>
-                    <input type="text" class="form-control" id="checkout-email" name="email" placeholder="Email" required>
-                </div>
+                    <td>
+                        <span><?php echo $row['product_price']; ?></span>
+                    </td>
+                    <td>
+                        <span><?php echo $row['product_quantity']; ?></span>
+                    </td>
+                  
+                </tr>
+              <?php } ?>
+        </table>
 
-                <div class="form-group checkout-small-element">
-                    <label >Phone number</label>
-                    <input type="tel" class="form-control" id="checkout-phone" name="phone" placeholder="Phone" required>
-                </div>
-                
+        <?php if($order_status == "not paid"){?>
+                <form style="float: right;">
+                  <input class="btn btn-primary" type="submit" value="Pay Now" >
+                </form>
 
-                <div class="form-group checkout-small-element">
-                    <label >City</label>
-                    <input type="text" class="form-control" id="checkout-city" name="city" placeholder="City" required>
-                </div>
-
-                <div class="form-group checkout-large-element">
-                    <label >Address</label>
-                    <input type="text" class="form-control" id="checkout-address" name="address" placeholder="Address" required>
-                </div>
-
-                <div class="form-group checkout-btn-container">
-                    <p>Total amount: $ <?php echo $_SESSION['total']; ?> </p>
-                    <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
-                </div>
-
-            </form>
-        </div>
+        <?php } ?>
     </section>
-    <!-- checkout-end -->
-
+    <!-- order detail -->
+    
     <!-- Footer -->
     <footer>
         <div class="container">

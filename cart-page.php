@@ -2,6 +2,14 @@
 
 session_start();
 
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+
+if (!isset($_SESSION['total'])) {
+    $_SESSION['total'] = 0;
+}
+
 if (isset($_POST['add_to_cart'])) {
 
     /* already added a product to cart */
@@ -138,15 +146,15 @@ function calculatedTotalCart () {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="shop-page.html">Shop</a>
+                <a class="nav-link" href="shop-page.php">Shop</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="cart-page.html">Cart</a>
+                <a class="nav-link" href="cart-page.php">Cart</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="contact-us-page.html">Contact</a>
+                <a class="nav-link" href="contact-us-page.php">Contact</a>
               </li>
             <!-- Link-end -->
             </ul>
