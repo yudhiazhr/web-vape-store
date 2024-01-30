@@ -2,6 +2,11 @@
 
 session_start();
 
+if (isset($_POST['order_pay_btn'])) {
+   $order_status =  $_POST['order_status'];
+   $order_total_price = $_POST['order_total_price'];
+
+}
 
 ?>
 
@@ -26,44 +31,7 @@ session_start();
 </head>
 <body>
 
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"><span>V</span>APE STORE</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-             <!-- Link -->
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="shop-page.php">Shop</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="cart-page.php">Cart</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="contact-us-page.php">Contact</a>
-              </li>
-            <!-- Link-end -->
-            </ul>
-            <!-- Login /Signup -->
-            <div class="btn-login-signup d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-primary ">Login</button>
-                <button type="button" class="btn btn-secondary">Sign Up</button>
-            </div>
-            <!-- Login /Signup-end -->
-          </div>
-        </div>
-    </nav>
-    <!-- navbar-end -->
+    <?php include('layouts/navbar.php')?>
 
     <!-- payment -->
     <section class="payment my-5 py-5">
@@ -72,34 +40,24 @@ session_start();
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container text-center">
-            <p><?php echo $_GET['order_status'];?></p>
-            <p>Total payment: IDR <?php echo $_SESSION['total'];?></p>
-            <input type="submit" class="btn btn-primary" value="Pay now">
+
+            <?php if(isset($_SESSION['total']) && $_SESSION['total'] != 0 ) { ?>
+               <p>Total payment: IDR <?php echo $_SESSION['total'];?></p>
+               <input type="submit" class="btn btn-primary" value="Pay now">
+                
+            <?php } else if (isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
+                    <p>Total payment: IDR <?php echo $_POST['order_total_price'];?></p>
+                    <input type="submit" class="btn btn-primary" value="Pay now">
+            
+            <?php } else { ?>
+              <p>You dont have an order</p>
+            <?php } ?>
+
         </div>
     </section>
     <!-- payment-end -->
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="foot-left">
-                <h5>SUBSCRIBE NEWSLETTER</h5>
-                <h5>FAQ</h5>
-                <h5>CONTACT US</h5>
-            </div>
-            <div class="foot-right">
-                <h5>Terms & Conditions</h5>
-                <h5>Privacy Policy</h5>
-                <div class="copyright">
-                <h5>&copy; 2023 vapestore.com</h5>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer-end -->
-
-    <!-- Js dari bootsrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <?php include('layouts/footer.php')?>
 
 </body>
 </html>
