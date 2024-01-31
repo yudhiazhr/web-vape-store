@@ -13,7 +13,7 @@ if(isset($_GET['logout'])){
         unset($_SESSION['logged_in']);
         unset($_SESSION['user_name']);
         unset($_SESSION['user_email']);
-        header('location: login.php');
+        header('location: index.php');
         exit();
     }
 }
@@ -25,7 +25,7 @@ if (isset($_POST['change-password'])) {
     
 
      //if password dont match
-     if($password !== $confirmPassword) {
+    if($password !== $confirmPassword) {
         header('location: my-account-page.php?error=passwowrd dont match');
     }else if(strlen($password) < 6){
         header('location: my-account-page.php?error=password must be at least 6 characters');

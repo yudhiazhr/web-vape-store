@@ -53,16 +53,15 @@ h6 {
     top:0;
     left: 0;
     box-shadow: 0 5px 10px rgba(0,0,0,0,1);
+    display: flex;
 }
 .navbar-brand {
     margin-left: 100px;
 }
 
 .nav-buttons {
-    margin-left: 57%;
-}
-
-.btn-login-signup {
+    display: flex;
+    justify-content: flex-end;
     margin-right: 100px;
 }
 
@@ -82,8 +81,6 @@ h6 {
     font-size: 32px;
     font-weight:800;
 }
-
-
 /* Navbar-end */
 
 /* Home */

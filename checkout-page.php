@@ -2,7 +2,7 @@
 
 session_start();
 
-if( !empty($_SESSION['cart']) ){
+if(!empty($_SESSION['cart']) ){
 
     //user in
 

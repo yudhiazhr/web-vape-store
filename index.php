@@ -1,3 +1,13 @@
+<?php 
+
+session_start();
+include('server/connection.php');
+
+if (!isset($_SESSION["logged_in"])) {
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +38,7 @@
             <h1><span>Harga Terbaik</span> Di Tahun Ini!!!</h1>
             <p>Liquid rasa anggur mixed with leci.<br>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, cumque!</p>
             <button class="btn-shop-now" onclick="window.location.href='/shop-page.php'">Shop Now</button>
-        </div> 
+          </div> 
         <img class="imageHome" src="assets/images/liquid-anggur.png" alt="">
         <img class="blob" src="assets/images/blob.svg" alt="">
     </section>
