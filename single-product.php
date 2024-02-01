@@ -19,10 +19,6 @@ if(isset($_GET['product_id'])) {
 
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
