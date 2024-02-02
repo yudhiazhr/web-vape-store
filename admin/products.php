@@ -50,7 +50,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Dashboard Template · Bootstrap v5.1</title>
+    <title>Admin Vape Store</title>
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
 
@@ -94,6 +95,26 @@
 
         <h2>Products</h2>
 
+        <!-- create/add product -->
+        <?php if(isset($_GET['product_created'])) {?>
+          <p class="text-center" style="color: green;"><?php echo $_GET['product_created']; ?></p>
+        <?php } ?>
+
+        <?php if(isset($_GET['product_failed'])) {?>
+          <p class="text-center" style="color: red;"><?php echo $_GET['product_failed']; ?></p>
+        <?php } ?>
+        <!-- create/add product-end -->
+
+        <!-- update image -->
+        <?php if(isset($_GET['images_updated'])) {?>
+          <p class="text-center" style="color: green;"><?php echo $_GET['images_updated']; ?></p>
+        <?php } ?>
+
+        <?php if(isset($_GET['images_failed'])) {?>
+          <p class="text-center" style="color: red;"><?php echo $_GET['images_failed']; ?></p>
+        <?php } ?>
+        <!-- update image-end -->
+
         <!-- edit -->
         <?php if(isset($_GET['edit_success_message'])) {?>
           <p class="text-center" style="color: green;"><?php echo $_GET['edit_success_message']; ?></p>
@@ -128,6 +149,7 @@
                 <th scope="col">Product category</th>
                 <th scope="col">Product color/size</th>
                 <th scope="col">Product description</th>
+                <th scope="col">Edit image</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
               </tr>
@@ -147,6 +169,7 @@
                     <td><?php echo $product['product_category'] ?></td>
                     <td><?php echo $product['product_color'] ?></td>
                     <td><?php echo (strlen($product['product_description']) > 30 ? substr($product['product_description'], 0, 30) . '...' : $product['product_description']); ?></td>
+                    <td><a class="btn btn-warning" href="<?php echo "edit_images.php?product_id=".$product['product_id']."&product_name=".$product['product_name'];?>">Edit image</a></td>
                     <td><a class="btn btn-primary" href="edit_product.php?product_id=<?php echo $product['product_id']; ?>">Edit</a></td>
                     <td><a class="btn btn-danger" href="delete_product.php?product_id=<?php echo $product['product_id']; ?>">Delete</a></td>
                 </tr>

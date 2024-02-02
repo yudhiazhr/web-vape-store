@@ -26,7 +26,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="add_new_product.php">
+            <a class="nav-link" href="add_product.php">
               <span data-feather="file"></span>
               Add new product
             </a>
