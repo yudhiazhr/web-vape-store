@@ -93,6 +93,17 @@
         </div>
 
         <h2>Orders</h2>
+
+        <!-- edit -->
+        <?php if(isset($_GET['order_updated'])) {?>
+          <p class="text-center" style="color: green;"><?php echo $_GET['order_updated']; ?></p>
+        <?php } ?>
+
+        <?php if(isset($_GET['order_failed'])) {?>
+          <p class="text-center" style="color: red;"><?php echo $_GET['order_failed']; ?></p>
+        <?php } ?>
+        <!-- edit-end -->
+
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
@@ -100,6 +111,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Order id</th>
                 <th scope="col">Order status</th>
+                <th scope="col">Order price</th>
                 <th scope="col">User id</th>
                 <th scope="col">Order date</th>
                 <th scope="col">User phone</th>
@@ -117,11 +129,12 @@
                     <td><?php echo $count; ?>. </td>
                     <td><?php echo $order['order_id'] ?></td>
                     <td><?php echo $order['order_status'] ?></td>
+                    <td>IDR. <?php echo $order['order_cost'] ?></td>
                     <td><?php echo $order['user_id'] ?></td>
                     <td><?php echo $order['order_date'] ?></td>
                     <td><?php echo $order['user_phone'] ?></td>
                     <td><?php echo $order['user_address'] ?></td>
-                    <td><a class="btn btn-primary" href="">Edit</a></td>
+                    <td><a class="btn btn-primary" href="edit_order.php?order_id=<?php echo $order['order_id']; ?>">Edit</a></td>
                     <td><a class="btn btn-danger" href="">Delete</a></td>
                 </tr>
             <?php
