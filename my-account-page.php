@@ -22,6 +22,7 @@ if (isset($_POST['change-password'])) {
 
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm-password'];
+    $user_email = $_SESSION['user_email'];
     
 
      //if password dont match
@@ -46,7 +47,7 @@ if (isset($_POST['change-password'])) {
 if (isset($_SESSION['logged_in'])){
     
     $user_id = $_SESSION['user_id'];
-    $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=?");
+    $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=? ORDER BY order_id DESC");
 
     $stmt->bind_param('i', $user_id);
 
@@ -106,12 +107,12 @@ if (isset($_SESSION['logged_in'])){
                     <hr class="mx-auto">
                     
                     <div class="form-group">
-                        <label >Password</label>
+                        <label >New password</label>
                         <input type="password" class="form-control" id="my-account-password" name="password" placeholder="Password" required>
                     </div>
     
                     <div class="form-group">
-                        <label >Confirm Password</label>
+                        <label >Confirm new password</label>
                         <input type="password" class="form-control" id="my-account-confirm-password" name="confirm-password" placeholder="Confirm Password" required>
                     </div>
     
@@ -150,7 +151,7 @@ if (isset($_SESSION['logged_in'])){
                     </td>
 
                     <td>
-                        <span><?php echo $row['order_cost'];?></span>
+                        <span><?php echo number_format($row['order_cost'], 0, ',', '.');?></span>
                     </td>
                     <td>
                         <span><?php echo $row['order_status'];?></span>

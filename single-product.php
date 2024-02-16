@@ -72,7 +72,7 @@ if(isset($_GET['product_id'])) {
             <div class="col-lg-6 col-md-12 col-12">
                 <h6><?php echo $row['product_category']; ?></h6>
                 <h3 class="py-4"><?php echo $row['product_name']; ?></h3>
-                <h2>IDR <?php echo $row['product_price']; ?></h2>
+                <h2>IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h2>
 
                 <form  method="POST" action="cart-page.php">
                 <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>" >
@@ -113,9 +113,11 @@ if(isset($_GET['product_id'])) {
       <?php while($row= $featured_products->fetch_assoc()) { ?>
        
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-        <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        <a href="<?php echo "single-product.php?product_id=".$row['product_id'];?>">
+          <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        </a>
         <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-        <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+        <h4 class="p-price">IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h4>
         <a class="btn btn-buy" href="<?php echo "single-product.php?product_id=".$row['product_id'];?>" >Buy</a>
       </div>
       

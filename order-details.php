@@ -99,7 +99,7 @@
                     </td>
 
                     <td>
-                        <span><?php echo $row['product_price']; ?></span>
+                        <span><?php echo number_format($row['product_price'], 0, ',', '.');?></span>
                     </td>
                     <td>
                         <span><?php echo $row['product_quantity']; ?></span>

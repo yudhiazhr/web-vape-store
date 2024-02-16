@@ -102,7 +102,7 @@ $products = $stmt->get_result();
             <img  class="img-fluid mb-3" src="assets/products/<?php echo $row['product_image'];?>" width="500px" height="200px">
           </a>
           <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-          <h4 class="p-price"><?php echo $row['product_price'];?></h4>
+          <h4 class="p-price">IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h4>
           <a class="btn btn-buy" href="<?php echo "single-product.php?product_id=".$row['product_id'];?>" >Buy</a>
         </div>
 

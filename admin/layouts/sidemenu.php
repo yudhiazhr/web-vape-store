@@ -7,22 +7,10 @@
               Dashboard
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="index.php">
-              <span data-feather="shopping-cart"></span>
-              Orders
-            </a>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="products.php">
               <span data-feather="file"></span>
               Products
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users"></span>
-              Customers
             </a>
           </li>
           <li class="nav-item">
@@ -31,12 +19,6 @@
               Add new product
             </a>
           </li>
-       <!--    <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="user"></span>
-              Account
-            </a>
-          </li> -->
         </ul>
       </div>
     </nav>

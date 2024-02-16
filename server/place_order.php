@@ -21,7 +21,7 @@ if(!isset($_SESSION['logged_in'])) {
         $order_cost = $_SESSION['total'];
         $order_status =  "not paid";
         $user_id = $_SESSION['user_id'];
-        $order_date = date("Y-m-d H:i:s");
+        $order_date = $_POST['order_date'];
     
     
        $stmt = $conn-> prepare("INSERT INTO orders (order_cost, order_status, user_id, user_phone, user_city, user_address, order_date)

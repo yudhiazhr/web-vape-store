@@ -80,7 +80,7 @@ if(!empty($_SESSION['cart']) ){
                 </div>
 
                 <div class="form-group checkout-btn-container">
-                    <p>Total amount: $ <?php echo $_SESSION['total']; ?> </p>
+                    <p>Total amount: $ <?php echo number_format($_SESSION['total'], 0 ,',', '.'); ?> </p>
                     <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
                 </div>
 

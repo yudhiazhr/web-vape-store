@@ -59,9 +59,11 @@ if (!isset($_SESSION["logged_in"])) {
       <?php while($row= $featured_products->fetch_assoc()) { ?>
        
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-        <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        <a href="<?php echo "single-product.php?product_id=".$row['product_id'];?>">
+          <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        </a>
         <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-        <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+        <h4 class="p-price">IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h4>
         <a href="<?php echo "single-product.php?product_id=", $row['product_id'];?>"><button class="btn-buy">Buy</button></a>
       </div>
       
@@ -96,9 +98,11 @@ if (!isset($_SESSION["logged_in"])) {
       <?php while($row= $liquid_products->fetch_assoc()) { ?>
 
         <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <img class="img-fluid mb-2" src="/assets/products/<?php echo $row['product_image'];?>">
+        <a href="<?php echo "single-product.php?product_id=".$row['product_id'];?>">
+          <img class="img-fluid mb-3" src="/assets/products/<?php echo $row['product_image'];?>"/>
+        </a>
           <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-          <h4 class="p-price">IDR <?php echo $row['product_price'];?></h4>
+          <h4 class="p-price">IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h4>
           <a href="<?php echo "single-product.php?product_id=", $row['product_id'];?>"><button class="btn-buy">Buy</button></a>
         </div>
 

@@ -2,6 +2,11 @@
 
 session_start();
 
+if (!isset($_SESSION["logged_in"])) {
+    header('location: login.php');
+    exit();
+}
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array();
 }
@@ -154,7 +159,7 @@ function calculatedTotalCart () {
                         <img src="assets/products/<?php echo $value ['product_image']; ?>">
                         <div>
                             <p><?php echo  $value ['product_name']; ?></p>
-                            <small><span>IDR </span><?php echo  $value ['product_price']; ?></small>
+                            <small><span>IDR </span><?php echo number_format($value['product_price'], 0, ',', '.');?></small>
                             <br>
 
                             <form method ="POST" action="cart-page.php">
@@ -170,7 +175,7 @@ function calculatedTotalCart () {
                     
                     <form method="POST" action="cart-page.php">
                         <input type="hidden" name="product_id" value="<?php echo $value ['product_id'];?>">
-                        <input type="number" name="product_quantity" value="<?php echo  $value ['product_quantity']; ?>">
+                        <input type="number" name="product_quantity" value="<?php echo  $value['product_quantity']; ?>" min="1" oninput="validity.valid||(value=1);">
                         <input type="submit" class="edit-btn" value="edit" name="edit_quantity">
                     </form>
 
@@ -178,7 +183,7 @@ function calculatedTotalCart () {
 
                 <td>
                     <span>IDR </span>
-                    <span class="product-price"><?php echo $value['product_quantity'] * $value ['product_price']; ?></span>
+                    <span class="product-price"><?php echo number_format($value['product_quantity'] * $value ['product_price'], 0, ',', '.');?></span>
                 </td>
             </tr>
             
@@ -190,7 +195,7 @@ function calculatedTotalCart () {
             <table>
                 <tr>
                     <td>Total</td>
-                    <td>IDR <?php echo $_SESSION['total']; ?></td>
+                    <td>IDR <?php echo number_format($_SESSION['total'], 0, ',', '.'); ?></td>
                 </tr>
             </table>
         </div>
@@ -204,6 +209,8 @@ function calculatedTotalCart () {
     <!-- Cart-end -->
 
     <?php include('layouts/footer.php')?>
+
+   
             
 </body>
 </html>
