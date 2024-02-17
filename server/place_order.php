@@ -24,10 +24,10 @@ if(!isset($_SESSION['logged_in'])) {
         $order_date = $_POST['order_date'];
     
     
-       $stmt = $conn-> prepare("INSERT INTO orders (order_cost, order_status, user_id, user_phone, user_city, user_address, order_date)
-                         VALUES (?,?,?,?,?,?,?); ");
+       $stmt = $conn-> prepare("INSERT INTO orders (order_cost, order_status, user_id, user_name, user_phone, user_city, user_address, order_date)
+                         VALUES (?,?,?,?,?,?,?,?); ");
         
-        $stmt->bind_param('ississs',$order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
+        $stmt->bind_param('isisssss',$order_cost, $order_status, $user_id, $name, $phone, $city, $address, $order_date);
     
         $stmt_status = $stmt->execute();
     
@@ -58,13 +58,12 @@ if(!isset($_SESSION['logged_in'])) {
         }
     
         //remove everything from cart
-        
+      
+
     
         //inform user whether everything is fine or there is a problem
         header ('location: ../payment-page.php?order_status=Order placed successfully');
     }
 }
-
-
 
 ?>

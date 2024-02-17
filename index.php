@@ -78,7 +78,7 @@ if (!isset($_SESSION["logged_in"])) {
       <div class="container">
         <h4>MID SEASON'S SALE</h4>
         <h1>Summer Collection <br> UP to 30% OFF</h1>
-        <button class="btn-buy text-uppercase">shop now</button>
+        <button class="btn-buy text-uppercase" onclick="window.location.href='/shop-page.php'">shop now</button>
       </div>
     </section>
     <!-- Banner-End -->

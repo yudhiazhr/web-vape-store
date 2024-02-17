@@ -129,48 +129,50 @@ if (isset($_SESSION['logged_in'])){
 
     <!-- my orders -->
     <section id="my-orders" class="my-orders container my-2 py-3">
-        <div class="container mt-5">
-            <h2 class="font-weight-bold text-center">My orders</h2>
-            <hr class="mx-auto">
-        </div>
-        
-        <table class="mt-5 pt-5" >
+    <div class="container mt-5">
+        <h2 class="font-weight-bold text-center">My orders</h2>
+        <hr class="mx-auto">
+    </div>
+    
+    <?php if ($orders->num_rows > 0) { ?>
+        <table class="mt-5 pt-5">
             <tr>
                 <th>Order id</th>
                 <th>Order cost</th>
                 <th>Order status</th>
                 <th>Order date</th>
                 <th>Order details</th>
-
             </tr>
 
-            <?php while($row = $orders->fetch_assoc() ){ ?>
+            <?php while ($row = $orders->fetch_assoc()) { ?>
                 <tr>
-                    <td>
-                        <span><?php echo $row['order_id']; ?></span>
-                    </td>
-
-                    <td>
-                        <span><?php echo number_format($row['order_cost'], 0, ',', '.');?></span>
-                    </td>
-                    <td>
-                        <span><?php echo $row['order_status'];?></span>
-                    </td>
-                    <td>
-                        <span><?php echo $row['order_date'];?></span>
-                    </td>
+                    <td><span><?php echo $row['order_id']; ?></span></td>
+                    <td><span><?php echo number_format($row['order_cost'], 0, ',', '.'); ?></span></td>
+                    <td><span><?php echo $row['order_status']; ?></span></td>
+                    <td><span><?php echo $row['order_date']; ?></span></td>
                     <td>
                         <form method="POST" action="order-details.php">
-                            <input type="hidden" value="<?php echo $row['order_status'];?>" name="order_status">
-                            <input type="hidden" value="<?php echo $row['order_id'];?>" name="order_id">
+                            <input type="hidden" value="<?php echo $row['order_status']; ?>" name="order_status">
+                            <input type="hidden" value="<?php echo $row['order_id']; ?>" name="order_id">
                             <input type="submit" class="btn order-details-btn" value="details" name="order-details-btn">
                         </form>
                     </td>
-                    
                 </tr>
             <?php } ?>
         </table>
+        <?php } else { ?>
+            <table class="mt-5 pt-5">
+            <tr>
+                <th>Order id</th>
+                <th>Order cost</th>
+                <th>Order status</th>
+                <th>Order date</th>
+                <th>Order details</th>
+            </tr>
 
+        </table>
+            <p class="text-center mt-1 pt-5">Anda belum memesan apapun.</p> 
+        <?php } ?>
     </section>
     <!-- my orders-end -->
 

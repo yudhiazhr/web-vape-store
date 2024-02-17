@@ -46,12 +46,12 @@ if(!empty($_SESSION['cart']) ){
         <div class="mx-auto container">
             <form id="checkout-form" method="POST" action="server/place_order.php">
                 
-                <p class="text-center" style="color: red;" >
+                <!-- <p class="text-center" style="color: red;" >
                     <?php if(isset($_GET['message'])) { echo $_GET['message']; }?>
                         <?php if(isset($_GET['message'])) { ?>
                             <a href="login.php" class="btn btn-primary">Login</a>
                         <?php } ?>
-                </p>
+                </p> -->
 
                 <div class="form-group checkout-small-element">
                     <label >Name</label>
@@ -80,7 +80,7 @@ if(!empty($_SESSION['cart']) ){
                 </div>
 
                 <div class="form-group checkout-btn-container">
-                    <p>Total amount: $ <?php echo number_format($_SESSION['total'], 0 ,',', '.'); ?> </p>
+                    <p>Total amount: IDR <?php echo number_format($_SESSION['total'], 0 ,',', '.'); ?> </p>
                     <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
                 </div>
 
