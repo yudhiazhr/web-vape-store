@@ -4,9 +4,6 @@ session_start();
 
 if(!empty($_SESSION['cart']) ){
 
-    //user in
-
-
     //send user to home page or index
 } else {
     header('location: index.php');
@@ -45,13 +42,6 @@ if(!empty($_SESSION['cart']) ){
         </div>
         <div class="mx-auto container">
             <form id="checkout-form" method="POST" action="server/place_order.php">
-                
-                <!-- <p class="text-center" style="color: red;" >
-                    <?php if(isset($_GET['message'])) { echo $_GET['message']; }?>
-                        <?php if(isset($_GET['message'])) { ?>
-                            <a href="login.php" class="btn btn-primary">Login</a>
-                        <?php } ?>
-                </p> -->
 
                 <div class="form-group checkout-small-element">
                     <label >Name</label>
@@ -79,9 +69,11 @@ if(!empty($_SESSION['cart']) ){
                     <input type="text" class="form-control" id="checkout-address" name="address" placeholder="Address" required>
                 </div>
 
+
                 <div class="form-group checkout-btn-container">
-                    <p>Total amount: IDR <?php echo number_format($_SESSION['total'], 0 ,',', '.'); ?> </p>
-                    <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
+                        <p>Total amount: IDR <?php echo number_format($_SESSION['total'], 0, ',', '.'); ?></p>
+                        <input type="submit" class="btn" id="checkout-btn" name="place_order" value="Place Order">
+                    </form>
                 </div>
 
             </form>

@@ -1,5 +1,13 @@
 <?php 
 
+
+session_start();
+
+if (!isset($_SESSION["logged_in"])) {
+    header('location: login.php');
+    exit();
+}
+
   /* 
     not paid
     paid
@@ -113,6 +121,7 @@
                 <form style="float: right;" method="POST" action="payment-page.php">
                 <input type="hidden" name="order_total_price" value="<?php echo $order_total_price ?>">
                 <input type="hidden" name="order_status" value="<?php echo $order_status ?>">
+                <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
                 <input class="btn btn-primary" name="order_pay_btn" type="submit" value="Pay Now" >
                 </form>
 

@@ -1,72 +1,25 @@
-<?php 
-namespace Midtrans;
+<?php
 session_start();
 
-if (isset($_POST['order_pay_btn'])) {
-   $order_status =  $_POST['order_status'];
-   $order_total_price = $_POST['order_total_price'];
+include("server/connection.php");
+
+if(isset($_POST['order_status']) && isset($_POST['order_total_price'])) {
+    $order_status = $_POST['order_status'];
+    $order_total_price = $_POST['order_total_price'];
+    $order_id = $_POST['order_id'];
+
+    if($order_status === "not paid") {
+        $amount = strval($order_total_price);
+    } else {
+        $amount = strval($_SESSION['total']);
+        $order_id = $_SESSION['order_id'];
+    }
 }
-
-// Set your server key
-$server_key = 'SB-Mid-server-10Dr4ULfMa42pHA6VbJOxEOt';
-
-if(isset($_POST['order_status']) && $_POST['order_status'] == "not paid") {
-    // Include the Midtrans library
-    require_once('midtrans/Midtrans.php');
-
-    // Set your client key
-    Config::$clientKey = 'SB-Mid-client-A4xo8S8KfljkK5QP';
-    // Set your server key
-    Config::$serverKey = $server_key;
-    // Set to development mode
-    Config::$isProduction = false;
-
-    // Transaction details
-    $transaction_details = array(
-        'order_id' => 'ORDER-' . rand(),
-        'gross_amount' => $_POST['order_total_price'], // amount in Rupiah
-    );
-
-    // Customer details
-    $customer_details = array(
-        'user_name'    => 'testing',
-        'email'         => 'test@gmail.com',
-    );
-
-    // Transaction data
-    $transaction_data = array(
-        'transaction_details' => $transaction_details,
-        'customer_details'    => $customer_details,
-    );
-
-    $snap_token = '';
-try {
-  $snap_token = Snap::getSnapToken($transaction_data);
-}
-catch (\Exception $e) {
-    echo $e->getMessage();
-}
-
-function printExampleWarningMessage() {
-    if (strpos(Config::$serverKey, 'your ') != false ) {
-        echo "<code>";
-        echo "<h4>Please set your server key from sandbox</h4>";
-        echo "In file: " . __FILE__;
-        echo "<br>";
-        echo "<br>";
-        echo htmlspecialchars('Config::$serverKey = \'SB-Mid-server-10Dr4ULfMa42pHA6VbJOxEOt\';');
-        die();
-    } 
-}
-
-}
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
     <!-- required meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,67 +34,55 @@ function printExampleWarningMessage() {
     <!-- css -->
     <link rel="stylesheet" href="css/checkout.css">
 
-    <!-- JS -->
-    <script type="text/javascript"
-      src="https://app.sandbox.midtrans.com/snap/snap.js"
-      data-client-key="SB-Mid-client-A4xo8S8KfljkK5QP"></script>
-
 </head>
 <body>
 
-    
 
-    <!-- payment -->
-    <section class="payment my-5 py-5">
-        <div class="container text-center mt-3 pt-5">
-            <h2 class="form-weight-bold">Payment</h2>
-            <hr class="mx-auto">
-        </div>
-        <div class="mx-auto container text-center">
+<!-- payment -->
+<section class="payment my-5 py-5">
+    <div class="container text-center mt-3 pt-5">
+        <h2 class="form-weight-bold">Payment</h2>
+        <hr class="mx-auto">
+    </div>
+    <div class="mx-auto container text-center">
+        <?php if (isset($order_status) && $order_status == "not paid"): ?>
+            <p>Total payment: IDR <?= number_format($order_total_price, 0 ,',', '.'); ?></p> 
+            <div id="paypal-button-container"></div>
+        <?php elseif(isset($_SESSION['total']) && $_SESSION['total'] != 0): ?>
+            <p>Total payment: IDR <?= number_format($_SESSION['total'], 0 ,',', '.'); ?></p>
+            <div id="paypal-button-container"></div>
+        <?php else: ?>
+            <p>You don't have an order</p>
+        <?php endif; ?>
+    </div>
+</section>
+<!-- payment-end -->
 
-            <?php if(isset($_SESSION['total']) && $_SESSION['total'] != 0 ) { ?>
-               <p>Total payment: IDR <?php echo $_SESSION['total'];?></p>
-               <input type="submit" class="btn btn-primary" value="Pay now">
-                
-            <?php } else if (isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
-                    <p>Total payment: IDR <?php echo $_POST['order_total_price'];?></p>
-                    <input id="pay-button" type="submit" class="btn btn-primary" value="Pay now">
-                    
+<?php include('layouts/footer.php')?>
 
-    <script type="text/javascript">
-      // For example trigger on button clicked, or any time you need
-      var payButton = document.getElementById('pay-button');
-      payButton.addEventListener('click', function () {
-        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay('<?php echo $snap_token?>', {
-          onSuccess: function(result){
-            /* You may add your own implementation here */
-            alert("payment success!"); console.log(result);
-          },
-          onPending: function(result){
-            /* You may add your own implementation here */
-            alert("wating your payment!"); console.log(result);
-          },
-          onError: function(result){
-            /* You may add your own implementation here */
-            alert("payment failed!"); console.log(result);
-          },
-          onClose: function(){
-            /* You may add your own implementation here */
-            alert('you closed the popup without finishing the payment');
-          }
-        })
-      });
-    </script>
-            <?php } else { ?>
-              <p>You dont have an order</p>
-            <?php } ?>
+<script src="https://www.paypal.com/sdk/js?client-id=ATmLx31OkFBDziChZjl14Jl2yOyvHzxPa6f_gTNqLgHcVrKTomOBO6AOqwM26eAx_1pCUl2YZRxNdyYd&currency=USD"></script>
 
-        </div>
-    </section>
-    <!-- payment-end -->
-
-    <?php include('layouts/footer.php')?>
+<script>
+    paypal.Buttons ({
+        createOrder: function(data, actions) {
+            return actions.order.create ({
+                purchase_units: [{
+                    amount: {
+                        value: '<?= $amount; ?>'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                window.location.href = "server/complete_payment.php?transaction_id=" + transaction.id + "&order_id=<?= $order_id; ?>";
+            })
+        }
+    }).render('#paypal-button-container')
+</script>
 
 </body>
 </html>

@@ -86,10 +86,20 @@ if (isset($_SESSION['logged_in'])){
     <!-- my account -->
     <section class="my-5 py-5">
         <div class="row container mx-auto">
+
+        <?php if(isset($_GET['payment_message'])) { ?>
+            <p class="mt-5 text-center" style="color:green"><?php echo $_GET['payment_message']; ?></p>
+        <?php } ?>
+
+        <p class="mt-5 text-center" style="color:green"><?php if(isset($_GET['order-status'])){echo $_GET['order-status'];}?></p> 
+
+
             <div class="text-center mt-3 pt-5 col-lg-6 col-md-12 col-sm-12">
             <p class="text-center" style="color:green"><?php if(isset($_GET['sign-up-success'])){echo $_GET['sign-up-success'];}?></p> 
             <p class="text-center" style="color:green"><?php if(isset($_GET['login-success'])){echo $_GET['login-success'];}?></p> 
-                <h3 class="font-weight-bold">My account</h3>
+
+            
+            <h3 class="font-weight-bold">My account</h3>
                 <hr class="mx-auto">
                 <div class="my-account-info">
                     <p>Name : <span><?php if(isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; }?></span></p>

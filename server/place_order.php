@@ -59,10 +59,10 @@ if(!isset($_SESSION['logged_in'])) {
     
         //remove everything from cart
       
-
+        $_SESSION['order_id'] = $order_id;
     
         //inform user whether everything is fine or there is a problem
-        header ('location: ../payment-page.php?order_status=Order placed successfully');
+        header ('location: ../my-account-page.php?order-status=Order placed successfully');
     }
 }
 
