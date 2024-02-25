@@ -145,13 +145,30 @@
 
           <!-- pagination -->
           <nav aria-label="Page navigation example">
-            <ul class="pagination mt-5">
-              <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-              <li class="page-item"><a href="#" class="page-link">1</a></li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                  
-            </ul>
+              <ul class="pagination mt-5">
+                  <?php if($page_no > 1) {?>
+                      <li class="page-item"><a href="?page_no=1" class="page-link">First</a></li>
+                      <li class="page-item"><a href="?page_no=<?php echo $previous_page;?>" class="page-link">Previous</a></li>
+                  <?php } ?>
+
+                  <?php
+                      $total_pages = ceil($total_records / $total_records_per_page);
+                      $start_loop = $page_no - $adjacents;
+                      $end_loop = $page_no + $adjacents;
+                      if($start_loop <= 0) $start_loop = 1;
+                      if($end_loop > $total_pages) $end_loop = $total_pages;
+                      for($i = $start_loop; $i <= $end_loop; $i++) {
+                  ?>
+                      <li class="page-item <?php if($i == $page_no) echo "active"; ?>">
+                          <a href="?page_no=<?php echo $i; ?>" class="page-link"><?php echo $i; ?></a>
+                      </li>
+                  <?php } ?>
+
+                  <?php if($page_no < $total_pages) {?>
+                      <li class="page-item"><a href="?page_no=<?php echo $next_page;?>" class="page-link">Next</a></li>
+                      <li class="page-item"><a href="?page_no=<?php echo $total_pages;?>" class="page-link">Last</a></li>
+                  <?php } ?>
+              </ul>
           </nav>
           <!-- pagination-end -->
 

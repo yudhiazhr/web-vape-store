@@ -1,14 +1,24 @@
 <?php 
-
 session_start();
 include("server/connection.php");
 
-$stmt = $conn->prepare("SELECT * FROM products");
+// Hitung jumlah total produk
+$total_products = $conn->query("SELECT COUNT(*) as total FROM products")->fetch_assoc()['total'];
 
+// Tentukan halaman saat ini
+$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+
+// Tentukan berapa banyak produk yang ingin ditampilkan per halaman
+$products_per_page = 4;
+
+// Hitung offset
+$offset = ($current_page - 1) * $products_per_page;
+
+// Query untuk membatasi hasil
+$stmt = $conn->prepare("SELECT * FROM products LIMIT ?, ?");
+$stmt->bind_param('ii', $offset, $products_per_page);
 $stmt->execute();
-
 $products = $stmt->get_result();
-
 ?>
 
 <!DOCTYPE html>
@@ -111,14 +121,20 @@ $products = $stmt->get_result();
 
         <!-- pagination -->
         <nav aria-label="Page navigation example">
-          <ul class="pagination mt-5">
-            <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-            <li class="page-item"><a href="#" class="page-link">1</a></li>
-            <li class="page-item"><a href="#" class="page-link">2</a></li>
-            <li class="page-item"><a href="#" class="page-link">Next</a></li>
-            
-          </ul>
-        </nav>
+  <ul class="pagination mt-5">
+    <?php if ($current_page > 1): ?>
+      <li class="page-item"><a href="?page=<?php echo $current_page - 1; ?>" class="page-link">Previous</a></li>
+    <?php endif; ?>
+    
+    <?php for ($page = 1; $page <= ceil($total_products / $products_per_page); $page++): ?>
+      <li class="page-item <?php echo $current_page == $page ? 'active' : ''; ?>"><a href="?page=<?php echo $page; ?>" class="page-link"><?php echo $page; ?></a></li>
+    <?php endfor; ?>
+
+    <?php if ($current_page < ceil($total_products / $products_per_page)): ?>
+      <li class="page-item"><a href="?page=<?php echo $current_page + 1; ?>" class="page-link">Next</a></li>
+    <?php endif; ?>
+  </ul>
+</nav>
         <!-- pagination-end -->
 
       </div>
