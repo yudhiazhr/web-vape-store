@@ -119,6 +119,18 @@ h6 {
     background-color: #1458b1;
 }
 
+.pay-btn-container {
+    display: flex;
+    justify-content: center; /* Mengatur posisi ke kanan */
+    margin-top: 20px; /* Memberikan sedikit jarak dari atas */
+}
+
+.pay-btn {
+    padding: 10px 20px; /* Memberikan padding agar tombol terlihat lebih baik */
+    color: #fff;
+    width: 50%;
+}
+
 /* Checkout-end */
 
 /* Footer */

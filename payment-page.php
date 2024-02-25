@@ -3,15 +3,19 @@ session_start();
 
 include("server/connection.php");
 
+$exchange_rate_idr_to_usd = 15594;
+
 if(isset($_POST['order_status']) && isset($_POST['order_total_price'])) {
     $order_status = $_POST['order_status'];
-    $order_total_price = $_POST['order_total_price'];
+    $order_total_price_idr = $_POST['order_total_price'];
     $order_id = $_POST['order_id'];
 
     if($order_status === "not paid") {
-        $amount = strval($order_total_price);
+        $amount_usd = $order_total_price_idr / $exchange_rate_idr_to_usd;
+        $amount = number_format($amount_usd, 2, '.', ''); 
     } else {
-        $amount = strval($_SESSION['total']);
+        $amount_usd = $_SESSION['total'] / $exchange_rate_idr_to_usd;
+        $amount = number_format($amount_usd, 2, '.', ''); 
         $order_id = $_SESSION['order_id'];
     }
 }
@@ -37,20 +41,26 @@ if(isset($_POST['order_status']) && isset($_POST['order_total_price'])) {
 </head>
 <body>
 
+<?php include('layouts/navbar.php')?>
+
 
 <!-- payment -->
-<section class="payment my-5 py-5">
+<section id="payment" class="payment my-5 py-5">
     <div class="container text-center mt-3 pt-5">
         <h2 class="form-weight-bold">Payment</h2>
         <hr class="mx-auto">
     </div>
     <div class="mx-auto container text-center">
         <?php if (isset($order_status) && $order_status == "not paid"): ?>
-            <p>Total payment: IDR <?= number_format($order_total_price, 0 ,',', '.'); ?></p> 
-            <div id="paypal-button-container"></div>
+            <p>Total payment: IDR <?= number_format($order_total_price_idr, 0 ,',', '.'); ?> or $ <?=  number_format($amount_usd, 2, '.', '');?></p> 
+            <div class="pay-btn-container">
+                <div id="paypal-button-container" class="pay-btn"></div>
+            </div>
         <?php elseif(isset($_SESSION['total']) && $_SESSION['total'] != 0): ?>
-            <p>Total payment: IDR <?= number_format($_SESSION['total'], 0 ,',', '.'); ?></p>
-            <div id="paypal-button-container"></div>
+            <p>Total payment: IDR <?= number_format($_SESSION['total'], 0 ,',', '.'); ?> or $ <?=  number_format($amount_usd, 2, '.', '');?></p>
+            <div class="pay-btn-container">
+                <div id="paypal-button-container" class="pay-btn"></div>
+            </div>
         <?php else: ?>
             <p>You don't have an order</p>
         <?php endif; ?>

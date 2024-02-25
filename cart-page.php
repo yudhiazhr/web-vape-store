@@ -15,15 +15,6 @@ if (!isset($_SESSION['total'])) {
     $_SESSION['total'] = 0;
 }
 
-// Remove checked-out products from the cart
-if (isset($_SESSION['checked_out_products'])) {
-    foreach ($_SESSION['checked_out_products'] as $checked_out_product_id) {
-        if (isset($_SESSION['cart'][$checked_out_product_id])) {
-            unset($_SESSION['cart'][$checked_out_product_id]);
-        }
-    }
-}
-
 if (isset($_POST['add_to_cart'])) {
 
     /* already added a product to cart */
