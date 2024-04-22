@@ -1,49 +1,49 @@
+    <header class="bg-white absolute top-0 left-0 w-full flex items-center z-10">
+      <div class="container">
+        <div class="flex items-center justify-between relative">
+          <div class="px-0">
+            <a href="index.php" class="font-bold italic text-xl block py-6 lg:text-2xl"><span class="text-primary font-bold text-xl lg:text-3xl">V</span>apeStore</a>
+          </div>
+          <div class="flex items-center px-4">
+            <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
+              <span class="hamburger-line transition duration-300 ease-in-out  origin-top-left"></span>
+              <span class="hamburger-line transition duration-300 ease-in-out"></span>
+              <span class="hamburger-line transition duration-300 ease-in-out  origin-bottom-left"></span>
+            </button>
+            <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-0 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+              <ul class="block lg:flex">
+                <li class="group">
+                  <a href="index.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Home</a>
+                </li>
+                <li class="group">
+                  <a href="shop-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Shop</a>
+                </li>
 
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-        <div class="container-fluid ">
-          <a class="navbar-brand" href="index.php"><span>V</span>APE STORE</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="nav-buttons" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-             <!-- Link -->
-              <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="shop-page.php">Shop</a>
-              </li>
-
-              <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) : ?>
-                  <li class="nav-item">
-                      <a href="cart-page.php" class="nav-link">Cart</a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) : ?>
+                  <li class="group">
+                    <a href="cart-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Cart</a>
                   </li>
-              <?php else : ?>
-                  <li class="nav-item">
-                     
+                <?php else : ?>
+                  <li class="group">
+                    <a href="login.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Cart</a>
                   </li>
-              <?php endif; ?>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="contact-us-page.php">Contact</a>
-              </li>
-              <li>
-              <?php
-                if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
-                  $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
-                  echo '<a href="my-account-page.php" class="btn btn-primary">' . (strlen($user_email) > 20 ? substr($user_email, 0, 20) . '...' : $user_email) . '</a>';
-                } else {
-                  echo '<a href="login.php" class="nav-link">Login</a>';
-                }
-                ?>
-              </li>
-            <!-- Link-end -->
-            </ul>
+                <?php endif; ?>
+
+                <li class="group">
+                  <?php
+                  if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+                    $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
+                    echo '<a href="my-account-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">' . $user_email . '</a>';
+                  } else {
+                    echo '<a href="login.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Login</a>';
+                  }
+                  ?>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
-      </nav>
-    <!-- navbar-end -->
+      </div>
+    </header>
+
+    <script src="js/navbar.js"></script>

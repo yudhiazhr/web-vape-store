@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("server/connection.php");
 
@@ -9,7 +9,10 @@ $total_products = $conn->query("SELECT COUNT(*) as total FROM products")->fetch_
 $current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
 
 // Tentukan berapa banyak produk yang ingin ditampilkan per halaman
-$products_per_page = 4;
+$products_per_page = 12;
+
+// Hitung jumlah total halaman
+$total_pages = ceil($total_products / $products_per_page);
 
 // Hitung offset
 $offset = ($current_page - 1) * $products_per_page;
@@ -23,29 +26,28 @@ $products = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <!-- required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vape Store</title>
+  <!-- required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vape Store</title>
 
-    <!-- bootsrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- fontawesome cdn -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
 
-    <!-- fontawesome cdn -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-
-    <!-- css -->
-    <link rel="stylesheet" href="css/shop-page.css">
+  <!-- css -->
+  <link rel="stylesheet" href="css/output.css">
 
 </head>
+
 <body>
 
-    <?php include('layouts/navbar.php')?>
+  <?php include('layouts/navbar.php') ?>
 
-      <!-- Search -->
-      <!-- <section id="search" class="my-5 py-5 ms-2">
+  <!-- Search -->
+  <!-- <section id="search" class="my-5 py-5 ms-2">
         <div class="container mt-5 py-5">
           <p>Search products</p>
           <hr>
@@ -92,56 +94,65 @@ $products = $stmt->get_result();
         </form>
 
       </section> -->
-      <!-- Search-end -->
-      
-     <!-- Shop -->
-     <section id="featured" class="my-5 py-5">
-      <div class="container mt-5 py-5">
-        <h3>Our Product</h3>
-        <hr>
-        <br>
-        <p>Here you can check out our featured products</p>
-      </div>
-      <div class="row mx-auto container-fluid">
+  <!-- Search-end -->
 
+  <!-- Shop -->
+  <section id="featured" class="pt-24 pb-16 min-h-[87.8dvh]">
+    <div class="container mt-5 py-5">
+      <h4 class="font-semibold text-xl text-dark mb-2">Our Featured Products</h4>
+      <hr class="mt-6 mb-6 w-1/3 border-t-2 border-gray-400">
+      <p class="text-base mb-12">Here you can check out our featured products</p>
+    </div>
 
-        <!-- Product -->
-        <?php while ($row = $products->fetch_assoc()) { ?>
-        <div class="product text-center col-lg-3 col-md-4 col-sm-12">
-          <a href="<?php echo "single-product.php?product_id=".$row['product_id'];?>">
-            <img  class="img-fluid mb-3" src="assets/products/<?php echo $row['product_image'];?>" width="500px" height="200px">
+    <!-- Product -->
+    <div class="flex flex-wrap gap-12 container">
+      <?php while ($row = $products->fetch_assoc()) { ?>
+        <div class="text-center">
+          <a href="<?php echo "single-product.php?product_id=" . $row['product_id']; ?>">
+            <img class=" w-64 h-64 cursor-pointer transition ease-in-out duration-300 hover:opacity-70" src="/assets/products/<?php echo $row['product_image']; ?>" />
           </a>
-          <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-          <h4 class="p-price">IDR <?php echo number_format($row['product_price'], 0, ',', '.');?></h4>
-          <a class="btn btn-buy" href="<?php echo "single-product.php?product_id=".$row['product_id'];?>" >Buy</a>
+          <h5 class="mt-4 text-base font-semibold"><?php echo $row['product_name']; ?></h5>
+          <h4 class="mb-4 text-lg font-bold text-red-500">IDR <?php echo number_format($row['product_price'], 0, ',', '.'); ?></h4>
+          <a href="<?php echo "single-product.php?product_id=", $row['product_id']; ?>"><button class="w-1/2 text-base font-semibold text-light bg-dark border border-transparent hover:bg-slate-700 py-3 px-5 rounded-full hover:shadow-lg transition duration-300 ease-in-out">Buy</button></a>
         </div>
+      <?php } ?>
+    </div>
+    <!-- Product-End -->
 
-        <?php } ?>
-        <!-- Product-end -->
+    <!-- Pagination -->
+    <div class="container">
+      <h5 class="text-base text-gray-600 mt-12 mb-4">Page <?php echo "$current_page of $total_pages"; ?></h5>
+      <nav class="flex " aria-label="Page navigation example">
+        <ul class="flex gap-2">
+          <!-- Previous Button -->
+          <?php if ($current_page > 1) : ?>
+            <li class="page-item">
+              <a href="?page=<?php echo $current_page - 1; ?>" class=" bg-primary hover:bg-blue-500 text-white px-3 py-2 rounded-l-lg">Previous</a>
+            </li>
+          <?php endif; ?>
 
-        <!-- pagination -->
-        <nav aria-label="Page navigation example">
-  <ul class="pagination mt-5">
-    <?php if ($current_page > 1): ?>
-      <li class="page-item"><a href="?page=<?php echo $current_page - 1; ?>" class="page-link">Previous</a></li>
-    <?php endif; ?>
-    
-    <?php for ($page = 1; $page <= ceil($total_products / $products_per_page); $page++): ?>
-      <li class="page-item <?php echo $current_page == $page ? 'active' : ''; ?>"><a href="?page=<?php echo $page; ?>" class="page-link"><?php echo $page; ?></a></li>
-    <?php endfor; ?>
+          <!-- Page Numbers -->
+          <?php for ($page = 1; $page <= ceil($total_products / $products_per_page); $page++) : ?>
+            <li class="page-item <?php echo $current_page == $page ? 'active' : ''; ?>">
+              <a href="?page=<?php echo $page; ?>" class=" bg-primary hover:bg-blue-500 text-white px-3 py-2 <?php echo $current_page == $page ? 'rounded-lg' : 'rounded-md'; ?>"><?php echo $page; ?></a>
+            </li>
+          <?php endfor; ?>
 
-    <?php if ($current_page < ceil($total_products / $products_per_page)): ?>
-      <li class="page-item"><a href="?page=<?php echo $current_page + 1; ?>" class="page-link">Next</a></li>
-    <?php endif; ?>
-  </ul>
-</nav>
-        <!-- pagination-end -->
+          <!-- Next Button -->
+          <?php if ($current_page < ceil($total_products / $products_per_page)) : ?>
+            <li class="page-item">
+              <a href="?page=<?php echo $current_page + 1; ?>" class=" bg-primary hover:bg-blue-500 text-white px-3 py-2 rounded-r-lg">Next</a>
+            </li>
+          <?php endif; ?>
+        </ul>
+      </nav>
+    </div>
+    <!-- Pagination-End -->
+  </section>
+  <!-- Shop-end -->
 
-      </div>
-    </section>
-    <!-- Shop-end -->
-
-    <?php include('layouts/footer.php')?>
+  <?php include('layouts/footer.php') ?>
 
 </body>
+
 </html>
