@@ -32,19 +32,21 @@ if (!isset($_SESSION["logged_in"])) {
   <?php include('layouts/navbar.php') ?>
 
   <!-- Home -->
-  <section id="home" class="pt-48 bg-gradient-to-r from-bluedark to-bluegray min-h-[100vh]">
-    <div class="container">
+  <section id="home" class="pt-48 bg-gradient-to-r from-bluedark to-bluegray min-h-[100vh] relative z-0">
+    <div class="container relative z-0">
       <div class="flex flex-wrap">
-        <div class="w-full self-center px-4 lg:w-1/2">
+        <div class="w-full self-center px-4 lg:w-1/2 relative z-10">
           <h1 class="text-base font-semibold text-light md:text-2xl">NEW ARRIVAL<span class="block font-bold text-light text-4xl mt-1 lg:text-5xl mb-5 ">Purple Gummy</span></h1>
           <p class="text-base text-justify font-medium text-light mb-10 leading-relaxed lg:text-xl">Liquid Rasa Purple Gummy adalah pilihan terbaik untuk menikmati kelezatan purple dan gummy dalam satu produk yang menggugah selera dan memberikan kepuasan maksimal. Rasakan sensasi baru dengan Liquid Rasa Purple Gummy sekarang!</p>
           <button class="text-base font-semibold text-light bg-primary border border-transparent hover:bg-blue-500 py-3 px-5 rounded-full hover:shadow-lg transition duration-300 ease-in-out" onclick="window.location.href='/shop-page.php'">SHOP NOW</button>
         </div>
 
-        <div class="w-full self-end px-4 lg:w-1/2">
+        <div class="w-full self-end px-4 lg:w-1/2 relative z-20">
           <div class="relative mt-10 lg:mt-0 lg:right-0">
-            <img src="assets/images/liquid-anggur.png" class=" max-w-full mx-auto ">
-            <span class=" absolute bottom-12 left-1/2 -translate-x-1/2 md:scale-125 -z-10 ">
+            <img src="assets/images/liquid-anggur.png" class="max-w-full mx-auto relative z-10">
+            <br>
+            <br>
+            <span class="absolute bottom-12 left-1/2 -translate-x-1/2 scale-90 md:scale-125 z-0">
               <svg width="420" height="420" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#2563eb" d="M45.9,-54.9C56.9,-45.6,61.2,-28.6,66.2,-10.2C71.2,8.2,76.9,27.9,71.1,43.9C65.3,59.8,47.9,71.9,28.8,78.8C9.6,85.6,-11.3,87.2,-29.2,80.5C-47.1,73.9,-61.9,59.1,-71.6,41.7C-81.2,24.2,-85.7,4.2,-80,-11.7C-74.3,-27.5,-58.5,-39.2,-43.5,-47.8C-28.4,-56.4,-14.2,-61.9,1.6,-63.9C17.5,-65.9,35,-64.2,45.9,-54.9Z" transform="translate(100 100) scale(1.1)" />
               </svg>
@@ -54,6 +56,7 @@ if (!isset($_SESSION["logged_in"])) {
       </div>
     </div>
   </section>
+
   <!-- Home-end -->
 
   <!-- Featured -->
@@ -73,7 +76,7 @@ if (!isset($_SESSION["logged_in"])) {
             <img class=" w-64 h-64 cursor-pointer transition ease-in-out duration-300 hover:opacity-70" src="/assets/products/<?php echo $row['product_image']; ?>" />
           </a>
           <h5 class="mt-4 text-base font-semibold"><?php echo $row['product_name']; ?></h5>
-          <h4 class="mb-4 text-lg font-bold text-red-500">IDR <?php echo number_format($row['product_price'], 0, ',', '.'); ?></h4>
+          <h4 class="mb-4 text-lg  text-red-500">IDR <?php echo number_format($row['product_price'], 0, ',', '.'); ?></h4>
           <a href="<?php echo "single-product.php?product_id=", $row['product_id']; ?>"><button class="w-1/2 text-base font-semibold text-light bg-dark border border-transparent hover:bg-slate-700 py-3 px-5 rounded-full hover:shadow-lg transition duration-300 ease-in-out">Buy</button></a>
         </div>
       <?php } ?>
@@ -108,7 +111,7 @@ if (!isset($_SESSION["logged_in"])) {
             <img class=" w-64 h-64 cursor-pointer transition ease-in-out duration-300 hover:opacity-70" src="/assets/products/<?php echo $row['product_image']; ?>" />
           </a>
           <h5 class="mt-4 text-base font-semibold"><?php echo $row['product_name']; ?></h5>
-          <h4 class="mb-4 text-lg font-bold text-red-500">IDR <?php echo number_format($row['product_price'], 0, ',', '.'); ?></h4>
+          <h4 class="mb-4 text-lg  text-red-500">IDR <?php echo number_format($row['product_price'], 0, ',', '.'); ?></h4>
           <a href="<?php echo "single-product.php?product_id=", $row['product_id']; ?>"><button class="w-1/2 text-base font-semibold text-light bg-dark border border-transparent hover:bg-slate-700 py-3 px-5 rounded-full hover:shadow-lg transition duration-300 ease-in-out">Buy</button></a>
         </div>
       <?php } ?>
@@ -130,4 +133,3 @@ if (!isset($_SESSION["logged_in"])) {
   </section>
 
   <?php include('layouts/footer.php') ?>
-

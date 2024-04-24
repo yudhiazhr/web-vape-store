@@ -13,19 +13,19 @@
             <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-0 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
               <ul class="block lg:flex">
                 <li class="group">
-                  <a href="index.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Home</a>
+                  <a href="index.php" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Home</a>
                 </li>
                 <li class="group">
-                  <a href="shop-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Shop</a>
+                  <a href="shop-page.php" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Shop</a>
                 </li>
 
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) : ?>
                   <li class="group">
-                    <a href="cart-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Cart</a>
+                    <a href="cart-page.php" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Cart</a>
                   </li>
                 <?php else : ?>
                   <li class="group">
-                    <a href="login.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Cart</a>
+                    <a href="login.php" class="text-base text-dark py-2 mx-4 flex group-hover:text-primary">Cart</a>
                   </li>
                 <?php endif; ?>
 
@@ -33,12 +33,14 @@
                   <?php
                   if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
                     $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
-                    echo '<a href="my-account-page.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">' . $user_email . '</a>';
+                    echo '<a href="my-account-page.php" class="text-base border rounded-lg bg-primary  text-light px-4 py-2 mx-4 flex group-hover:bg-blue-500">' . $user_email . '</a>';
                   } else {
-                    echo '<a href="login.php" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Login</a>';
+                    echo '<a href="login.php" class="text-base border rounded-lg bg-primary  text-light px-4 py-2 mx-4 flex justify-center group-hover:bg-blue-500">Login</a>';
                   }
                   ?>
                 </li>
+
+
               </ul>
             </nav>
           </div>
