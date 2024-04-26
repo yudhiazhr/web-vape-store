@@ -122,53 +122,6 @@ if (isset($_POST["signup"])) {
             </div>
         </div>
     </section>
-
-
-    <!-- <section class="sign-up my-5 py-5">
-        <div class="container text-center mt-3 pt-5">
-            <h2 class="form-weight-bold">Sign up</h2>
-            <hr class="mx-auto">
-        </div>
-        <div class="mx-auto container">
-            <form action="sign-up.php" id="signup-form" method="POST">
-
-            <p style="color: red"><?php if (isset($_GET['error'])) {
-                                        echo $_GET['error'];
-                                    } ?></p>
-                
-            <div class="form-group">
-                    <label >Name</label>
-                    <input type="text" class="form-control" id="signup-name" name="name" placeholder="Name" required>
-                </div>
-
-                <div class="form-group">
-                    <label >Email</label>
-                    <input type="text" class="form-control" id="signup-email" name="email" placeholder="Email" required>
-                </div>
-
-                <div class="form-group">
-                    <label >Password</label>
-                    <input type="password" class="form-control" id="signup-password" name="password" placeholder="Password" required>
-                </div>
-
-                <div class="form-group">
-                    <label >Confirm Password</label>
-                    <input type="password" class="form-control" id="signup-confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" class="btn" id="signup-btn" name= "signup" value="Sign Up">
-                </div>
-
-                <div class="form-group">
-                   <a id="login-url" href= "login.php" class="btn">Do you have account? Login</a>
-                </div>
-
-            </form>
-        </div>
-    </section> -->
-    <!-- Sign up -end -->
-
     <?php include('layouts/footer.php') ?>
 
 </body>
