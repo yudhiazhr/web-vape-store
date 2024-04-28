@@ -88,7 +88,7 @@ if (!isset($_SESSION["logged_in"])) {
   <section id="banner" class="my-5 pb-5 bg-cover bg-fixed flex flex-col justify-center items-start bg-[url('https://img.freepik.com/premium-photo/vaping-device-ecigarette-banner-blue-pink-light-background_638202-27.jpg?w=996')] h-[60vh]">
     <div class="container text-white">
       <h4 class="text-xl md:text-2xl">MID SEASON'S SALE</h4>
-      <h1 class="text-3xl md:text-4xl">Summer Collection <br> UP to 30% OFF</h1>
+      <h1 class="text-3xl font-bold md:text-4xl">Summer Collection <br> UP to 30% OFF</h1>
       <button class="text-sm md:text-lg uppercase font-bold bg-dark text-white py-3 px-6 rounded-full mt-4 hover:bg-slate-700 transition duration-500 ease-in-out" onclick="window.location.href='/shop-page.php'">Shop now</button>
     </div>
   </section>

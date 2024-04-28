@@ -670,11 +670,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.my-36 {
-  margin-top: 9rem;
-  margin-bottom: 9rem;
-}
-
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -729,10 +724,6 @@ video {
 
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .mt-36 {
@@ -791,76 +782,8 @@ video {
   height: 60vh;
 }
 
-.h-\[80vh\] {
-  height: 80vh;
-}
-
 .h-\[88\.7dvh\] {
   height: 88.7dvh;
-}
-
-.h-\[70vh\] {
-  height: 70vh;
-}
-
-.h-\[77vh\] {
-  height: 77vh;
-}
-
-.h-\[75vh\] {
-  height: 75vh;
-}
-
-.h-\[75dvh\] {
-  height: 75dvh;
-}
-
-.h-\[70dvh\] {
-  height: 70dvh;
-}
-
-.h-\[60dvh\] {
-  height: 60dvh;
-}
-
-.h-\[65dvh\] {
-  height: 65dvh;
-}
-
-.h-\[50dvh\] {
-  height: 50dvh;
-}
-
-.h-\[550dvh\] {
-  height: 550dvh;
-}
-
-.h-\[55dvh\] {
-  height: 55dvh;
-}
-
-.h-\[57dvh\] {
-  height: 57dvh;
-}
-
-.h-\[47dvh\] {
-  height: 47dvh;
-}
-
-.h-\[50vh\] {
-  height: 50vh;
-}
-
-.h-\[100vh\] {
-  height: 100vh;
-}
-
-.h-\[10vh\] {
-  height: 10vh;
-}
-
-.h-\[90vh\] {
-  height: 90vh;
 }
 
 .min-h-\[100vh\] {
@@ -881,42 +804,6 @@ video {
 
 .min-h-\[87\.8dvh\] {
   min-height: 87.8dvh;
-}
-
-.min-h-\[57dvh\] {
-  min-height: 57dvh;
-}
-
-.min-h-\[47dvh\] {
-  min-height: 47dvh;
-}
-
-.min-h-\[27dvh\] {
-  min-height: 27dvh;
-}
-
-.min-h-\[60vh\] {
-  min-height: 60vh;
-}
-
-.min-h-\[77vh\] {
-  min-height: 77vh;
-}
-
-.min-h-\[27vh\] {
-  min-height: 27vh;
-}
-
-.min-h-\[90vh\] {
-  min-height: 90vh;
-}
-
-.min-h-\[88vh\] {
-  min-height: 88vh;
-}
-
-.min-h-\[89vh\] {
-  min-height: 89vh;
 }
 
 .min-h-\[88\.5vh\] {
@@ -1018,6 +905,10 @@ video {
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -1074,10 +965,6 @@ video {
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-x-hidden {
-  overflow-x: hidden;
 }
 
 .scroll-smooth {
@@ -1335,10 +1222,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-36 {
-  padding-bottom: 9rem;
 }
 
 .text-left {
@@ -1762,13 +1645,13 @@ body {
     line-height: 1;
   }
 
-  .lg\:text-xl {
-    font-size: 1.25rem;
+  .lg\:text-lg {
+    font-size: 1.125rem;
     line-height: 1.75rem;
   }
 
-  .lg\:text-lg {
-    font-size: 1.125rem;
+  .lg\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 

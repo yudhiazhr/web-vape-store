@@ -68,7 +68,6 @@ if (isset($_POST["login-btn"])) {
 
   <!-- Login -->
   <section class="pt-48 h-[88.7dvh]">
-
     <div class="container flex justify-center">
       <div class="px-6 py-8 w-full md:w-[70%] lg:w-[55%] xl:w-[40%] min-h-[44dvh] border border-gray-100 rounded-xl shadow-xl bg-white">
         <h2 class=" text-xl leading-tight  tracking-tight font-bold md:text-2xl ">Sign in to your account</h2>

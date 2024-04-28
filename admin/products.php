@@ -2,6 +2,9 @@
 
 <!-- secure navigation if user not login first, user cant direct to index/dashboard -->
 <?php 
+
+session_start();
+  include('../server/connection.php');
   if(!isset($_SESSION['admin_logged_in'])) {
     header('location: login.php');
     exit();

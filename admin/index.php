@@ -1,7 +1,7 @@
-<?php include('layouts/navbar.php') ?>
-
 <!-- secure navigation if user not login first, user cant direct to index/dashboard -->
 <?php 
+  session_start();
+  include('../server/connection.php');
   if(!isset($_SESSION['admin_logged_in'])) {
     header('location: login.php');
     exit();
@@ -37,8 +37,6 @@
     $stmt2 = $conn -> prepare("SELECT * FROM orders LIMIT $offset, $total_records_per_page");
     $stmt2 -> execute();
     $orders = $stmt2-> get_result();
-
-
 ?>
 
 
@@ -53,8 +51,6 @@
     <title>Admin Vape Store</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-
-    
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -81,6 +77,7 @@
   </head>
 
 <body>
+<?php include('layouts/navbar.php');?>
     
   <div class="container-fluid">
     <div class="row">
